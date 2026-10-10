@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGuide, guides, guideReadingMinutes, guideSiteUrl, traditionLabels } from "@/lib/guides";
+import { guideMetricsEnabled } from "@/lib/guide-metrics";
+import GuideMetrics from "@/components/GuideMetrics";
 import styles from "../guides.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -92,7 +94,7 @@ export default async function GuidePage({ params }: Props) {
         <section className={styles.cta} aria-labelledby="reflection-heading">
           <h2 id="reflection-heading">Bring a question of your own.</h2>
           <p>Take a quiet moment in your sanctuary. Explore what is on your mind, then keep the reflection that feels useful.</p>
-          <Link className="button" href={`/sanctuary?tool=${guide.tool}`}>Begin a reflection <span aria-hidden="true">↗</span></Link>
+          <GuideMetrics guide={guide.slug} href={`/sanctuary?tool=${guide.tool}`} enabled={guideMetricsEnabled(process.env)} />
         </section>
         <nav className={styles.related} aria-label="Related guides">
           <h2>Continue exploring</h2>

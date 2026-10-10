@@ -11,7 +11,7 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 - Database rollback audit verifies erasure of all application tables, preservation of a different owner, and rejection of orphan recreation.
 - Tradition tests cover tarot deck constraints, all 4,096 three-coin outcomes, the 64 canonical hexagrams, changing lines and date validation.
 - Nine server-rendered guide routes return HTTP 200 and an unknown guide returns HTTP 404. Canonical metadata, sitemap, robots, article and breadcrumb structured data are implemented.
-- Production build and typechecking passed locally and in GitHub Actions. The final suite has 32 passing tests and two explicitly skipped database integration tests; the separate rollback database audit passed.
+- Production build and typechecking passed locally and in GitHub Actions. The current suite has 46 passing tests and two explicitly skipped database integration tests; the separate rollback database audits passed.
 
 ## Not yet proven or available
 
@@ -24,6 +24,10 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 - SEO outcomes: indexed pages, rankings, acquisition and conversion have not been measured. The research and editorial plan are hypotheses, not traffic results.
 - Separate preview data, backup restore drill, production spending alarms and sustained operational monitoring remain launch work.
 - Desktop signing/notarization and additional operating systems are not complete. Desktop packaging evidence is in [desktop operations](desktop.md).
+
+## Guide measurement follow-up
+
+The public guides now include daily view and sanctuary-link event counting with no visitor IDs or private-content telemetry, plus a read-only operator report. Fourteen additional tests cover the collector, client transport boundary and report. The production build, typecheck and dependency audit pass locally (zero production dependency vulnerabilities). The new migration and actual counter SQL passed in an isolated PostgreSQL schema inside a rollback transaction; no synthetic counts were retained. Independent browser execution and organic traffic remain unverified. See [measurement operations](guide-measurement.md) for data scope, disable controls, limitations and rollback.
 
 ## Release records
 

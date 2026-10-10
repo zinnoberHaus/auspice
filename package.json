@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts"
+    "test": "tsx --test tests/*.test.ts",
+    "metrics:guides": "node scripts/guide-metrics-report.mjs"
   },
   "dependencies": {
     "@neondatabase/auth": "^0.5.0-beta",
