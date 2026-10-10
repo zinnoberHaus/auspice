@@ -4,16 +4,17 @@ A calm place for tarot, I Ching, astrology, and feng shui. A responsive web sanc
 
 [Open Auspice](https://auspice-red.vercel.app) · [Practice guides](https://auspice-red.vercel.app/guides) · [Desktop releases](https://github.com/zinnoberHaus/auspice/releases)
 
-**Status: public alpha.** Public guides and guest tools are available. Production signup is currently blocked by the Auth provider's trusted-domain setting; [the corrective steps](docs/operations/deployment.md#production-auth-domain-correction) and [release evidence](docs/operations/release-readiness.md) record the exact state. The supplied design ZIP was not readable in the development environment, so the current visual design is provisional. Paid membership is an interest list, not an active subscription. This release does not include a professional birth chart, guaranteed predictions, or a traditional compass-school feng shui assessment.
+**Status: public alpha.** Public guides and guest tools are available. Production signup is currently blocked by the Auth provider's trusted-domain setting; [the corrective steps](docs/operations/deployment.md#production-auth-domain-correction) and [release evidence](docs/operations/release-readiness.md) record the exact state. The readable replacement design ZIP supplies the paper, ink and cinnabar almanac interface; see the [screen mapping and verification limits](docs/research/design-implementation.md). Rendered device verification remains pending. Paid membership is an interest list, not an active subscription. This release does not include a professional birth chart, guaranteed predictions, or a traditional compass-school feng shui assessment.
 
 ## What works
 
-- Cryptographically randomized tarot draws and three-coin I Ching casts, including changing lines and the resulting hexagram.
+- Cryptographically randomized one-card, three-card and Celtic Cross guest tarot spreads with individual card reveals, plus three-coin I Ching readings with changing lines and the resulting hexagram.
 - Approximate tropical sun-sign reflection, entrance-aligned BTB feng shui reflection, and synthesis across selected traditions.
 - Structured interpretations grounded in the selected symbols, with three saved readings per calendar month for verified free accounts.
 - Email/password accounts, verification and recovery interfaces, private journal notes, export, and permanent account deletion.
 - An operator console with explicit administrator authorization; owner activation remains pending.
 - Nine original, linked practice guides with canonical URLs, metadata, sitemap, and structured data.
+- Home-comparison notes and a date planner that can prepare a question for a reading; browser calendar export and a night studio theme. These are planning aids, not housing scores or an auspicious-date calculator.
 - A sandboxed macOS desktop client sharing the web account and journal. Preview packages are not Developer ID signed or notarized.
 
 Read the [methods and sources](docs/research/tradition-methods.md), [pricing and acquisition research](docs/research/product-strategy.md), and [editorial plan](docs/research/editorial-plan.md). Auspice supports personal reflection; it does not establish facts about the future or replace professional advice.

@@ -73,7 +73,7 @@ If gateway calls fail, reservations become failed and do not consume the monthly
 
 ## Launch gates
 
-Import and visually verify the supplied design archive; verify mobile/desktop rendering; configure and test production email delivery and recovery with an owner-controlled mailbox; activate the exact intended administrator; verify trusted domains and production localhost policy; accept Stripe terms and implement/test billing before selling Plus; sign and notarize desktop packages; perform a database restore drill and set operational spending alerts. No production mailbox, administrator, payment method or legal acceptance was fabricated during implementation.
+Visually verify the imported replacement design archive on mobile and desktop; configure and test production email delivery and recovery with an owner-controlled mailbox; activate the exact intended administrator; verify trusted domains and production localhost policy; accept Stripe terms and implement/test billing before selling Plus; sign and notarize desktop packages; perform a database restore drill and set operational spending alerts. No production mailbox, administrator, payment method or legal acceptance was fabricated during implementation.
 
 ## Production Auth domain correction
 

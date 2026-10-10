@@ -1,7 +1,22 @@
 import { ImageResponse } from 'next/og';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const alt = 'Auspice — A little perspective. A deeper connection.';
-export default function Image() {
-  return new ImageResponse(<div style={{width:'100%',height:'100%',background:'#f8f6f2',color:'#332735',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'90px'}}><div style={{display:'flex',flexDirection:'column',maxWidth:760}}><div style={{fontSize:30,color:'#614264',marginBottom:48}}>Auspice</div><div style={{fontFamily:'serif',fontSize:74,lineHeight:1.08}}>A little perspective. A deeper connection.</div><div style={{fontSize:24,marginTop:36,color:'#746a78'}}>Tarot · I Ching · Astrology · Feng shui</div></div><div style={{display:'flex',alignItems:'center',justifyContent:'center',width:210,height:210,borderRadius:'50%',border:'2px solid #ad97b1',color:'#614264',fontSize:150}}><svg width="132" height="132" viewBox="0 0 100 100"><path d="M50 4 L62 38 L96 50 L62 62 L50 96 L38 62 L4 50 L38 38 Z" fill="none" stroke="#614264" strokeWidth="2"/></svg></div></div>,size);
+export default async function Image() {
+  const font = await readFile(join(process.cwd(), 'public/fonts/Libre-Caslon-Display-Regular.ttf'));
+  return new ImageResponse(
+    <div style={{ width: '100%', height: '100%', background: '#F3EEE4', color: '#1D1B17', display: 'flex', flexDirection: 'column', padding: '58px 72px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 18, borderBottom: '1px solid #D8CFBE', paddingBottom: 28 }}>
+        <svg width="54" height="54" viewBox="0 0 192 192"><rect width="192" height="192" rx="24" fill="#B3361F"/><path d="M96 37V91M46 58H146M58 91H134M59 115H133V155H59Z" fill="none" stroke="#F6F1E7" strokeWidth="10"/></svg>
+        <span style={{ fontFamily: 'Caslon', fontSize: 48 }}>Auspice</span>
+      </div>
+      <div style={{ display: 'flex', flex: 1, alignItems: 'center', maxWidth: 960, fontFamily: 'Caslon', fontSize: 86, lineHeight: 1.02, letterSpacing: '-1px' }}>A little perspective. A deeper connection.</div>
+      <div style={{ display: 'flex', borderTop: '3px solid #1D1B17', paddingTop: 5 }}>
+        <div style={{ display: 'flex', width: '100%', borderTop: '1px solid #1D1B17', paddingTop: 22, fontSize: 23, color: '#4B463D' }}>Tarot · I Ching · Astrology · Feng shui</div>
+      </div>
+    </div>,
+    { ...size, fonts: [{ name: 'Caslon', data: new Uint8Array(font).buffer, weight: 400, style: 'normal' }] },
+  );
 }
