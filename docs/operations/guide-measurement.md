@@ -1,6 +1,6 @@
 # Public guide measurement
 
-The initial acquisition baseline counts two events: opening a published practice guide (`view`) and using its **Begin a reflection** link (`open_sanctuary`). Collection is limited to the individual public guide pages. It does not track the guide index, other public pages, private sanctuary, journal, account or administration pages.
+The initial acquisition baseline counts two events: opening a published practice guide (`view`) and using its **Open the almanac** link (`open_sanctuary`). Collection is limited to the individual public guide pages. It does not track the guide index, other public pages, private sanctuary, journal, account or administration pages.
 
 ## Data and interpretation
 

@@ -2,9 +2,9 @@
 
 A calm place for tarot, I Ching, astrology, and feng shui. A responsive web sanctuary, private journal, and macOS desktop preview.
 
-[Open Auspice](https://auspice-red.vercel.app) · [Practice guides](https://auspice-red.vercel.app/guides) · [Desktop releases](https://github.com/zinnoberHaus/auspice/releases)
+[Open Auspice](https://auspice-red.vercel.app) · [Free tarot](https://auspice-red.vercel.app/free-tarot) · [Practice guides](https://auspice-red.vercel.app/guides) · [Desktop releases](https://github.com/zinnoberHaus/auspice/releases)
 
-**Status: public alpha.** Public guides and guest tools are available. Production signup is currently blocked by the Auth provider's trusted-domain setting; [the corrective steps](docs/operations/deployment.md#production-auth-domain-correction) and [release evidence](docs/operations/release-readiness.md) record the exact state. The readable replacement design ZIP supplies the paper, ink and cinnabar almanac interface; see the [screen mapping and verification limits](docs/research/design-implementation.md). Rendered device verification remains pending. Paid membership is an interest list, not an active subscription. This release does not include a professional birth chart, guaranteed predictions, or a traditional compass-school feng shui assessment.
+**Status: public alpha.** Public guides and guest tools are available. Production signup is currently blocked by the Auth provider's trusted-domain setting; [the corrective steps](docs/operations/deployment.md#production-auth-domain-correction) and [release evidence](docs/operations/release-readiness.md) record the exact state. The readable replacement design ZIP supplies the paper, ink and cinnabar almanac interface; see the [screen mapping and verification limits](docs/research/design-implementation.md). Rendered device verification remains pending. Paid membership remains proposed; subscriptions, trials and an email waitlist are not open. This release does not include a professional birth chart, guaranteed predictions, or a traditional compass-school feng shui assessment.
 
 ## What works
 
@@ -16,6 +16,8 @@ A calm place for tarot, I Ching, astrology, and feng shui. A responsive web sanc
 - Nine original, linked practice guides with canonical URLs, metadata, sitemap, and structured data.
 - Home-comparison notes and a date planner that can prepare a question for a reading; browser calendar export and a night studio theme. These are planning aids, not housing scores or an auspicious-date calculator.
 - A sandboxed macOS desktop client sharing the web account and journal. Preview packages are not Developer ID signed or notarized.
+
+The [almanac launch strategy](reports/Auspice%20almanac%20launch%20strategy.md) includes the pricing hypothesis, 30-day marketing plan and prepared channel copy. The [marketing and SEO runbook](docs/operations/marketing-seo.md) records technical checks and launch gates.
 
 Read the [methods and sources](docs/research/tradition-methods.md), [pricing and acquisition research](docs/research/product-strategy.md), and [editorial plan](docs/research/editorial-plan.md). Auspice supports personal reflection; it does not establish facts about the future or replace professional advice.
 
@@ -35,6 +37,8 @@ Migration execution requires `psql` and a trusted CA bundle. On systems without 
 npm test
 npm run build
 npm run typecheck
+# With npm start running:
+npm run check:public
 npm audit --omit=dev --audit-level=high
 ```
 

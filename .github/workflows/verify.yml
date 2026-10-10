@@ -20,6 +20,16 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: npm run typecheck
+      - name: Verify public HTML and SEO
+        run: |
+          npm start -- --hostname 127.0.0.1 --port 3100 >/tmp/auspice-web.log 2>&1 &
+          auspice_server_pid=$!
+          trap 'kill "$auspice_server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3100/ >/dev/null; then break; fi
+            sleep 1
+          done
+          AUSPICE_TEST_URL=http://127.0.0.1:3100 npm run check:public
       - run: npm audit --omit=dev --audit-level=high
   desktop-dependencies:
     runs-on: ubuntu-latest

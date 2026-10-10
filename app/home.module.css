@@ -12,7 +12,7 @@
 }
 
 .page a { text-decoration: none; }
-.page a:focus-visible { outline: 2px solid var(--home-red); outline-offset: 5px; }
+.page a:focus-visible, .page summary:focus-visible { outline: 2px solid var(--home-red); outline-offset: 5px; }
 .page h1, .page h2, .page h3 { text-wrap: balance; }
 .page p { text-wrap: pretty; }
 
@@ -56,6 +56,9 @@
 .synthesisLink { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; margin-top: 8px; color: var(--home-red); font-size: 12px; font-weight: 600; }
 .synthesisLink svg { flex-shrink: 0; }
 .synthesisLink:hover span { text-decoration: underline; text-underline-offset: 4px; }
+.availability { padding:17px 0; margin:0; border-bottom:1px solid var(--home-line); color:#4b463d; font-size:12px; line-height:1.75; }
+.availability strong { color:var(--home-ink); }
+.availability a { color:var(--home-red); text-decoration:underline; text-underline-offset:3px; }
 
 .traditions { scroll-margin-top: 24px; }
 .sectionHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 25px; padding: 27px 0 23px; }
@@ -87,6 +90,23 @@
 .journalProcess .accountNote { margin-top: 16px; color: var(--home-muted); font-size: 12px; }
 .accountNote a { text-decoration: underline; text-underline-offset: 3px; }
 .accountNote a:hover { color: var(--home-red); }
+.membership { padding-bottom:32px; border-bottom:3px double var(--home-ink); }
+.membershipGrid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); border:1px solid var(--home-line); border-radius:8px; background:var(--home-light); }
+.membershipGrid article { min-width:0; padding:26px 28px; }
+.membershipGrid article + article { border-left:1px solid var(--home-line); }
+.membershipGrid .kicker { margin-bottom:10px; }
+.membershipGrid h3 { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 24px; font-size:32px; margin:0 0 14px; }
+.membershipGrid h3 > span { font:29px var(--serif); }
+.membershipGrid h3 small { font:12px var(--sans); color:#4b463d; white-space:nowrap; }
+.membershipGrid p:not(.kicker) { color:#4b463d; font-size:14px; line-height:1.7; max-width:58ch; margin-bottom:12px; }
+.membershipGrid .priceNote { font-size:12px; margin:0; }
+.faq { max-width:860px; margin:0 auto; padding:36px 0; }
+.faq h2 { font-size:38px; margin:0 0 18px; }
+.faq details { border-bottom:1px solid var(--home-line); }
+.faq summary { cursor:pointer; padding:18px 4px; font-size:15px; font-weight:500; }
+.faq summary:hover { color:var(--home-red); }
+.faq details p { color:#4b463d; font-size:14px; line-height:1.8; padding:0 4px 21px; margin:0; max-width:76ch; }
+.faq details a { color:var(--home-red); text-decoration:underline; text-underline-offset:3px; }
 
 .library { padding-top: 7px; }
 .guideGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--home-line); }
@@ -152,6 +172,8 @@
   .journalIntro h2 { font-size: 40px; }
   .journalIntro > p:not(.kicker) { max-width: 580px; }
   .journalProcess { max-width: 580px; }
+  .membershipGrid { grid-template-columns:minmax(0,1fr); }
+  .membershipGrid article + article { border-left:0; border-top:1px solid var(--home-line); }
   .library .sectionHeading { gap: 2px; padding-bottom: 13px; }
   .guideGrid { grid-template-columns: minmax(0, 1fr); }
   .guide, .guide:first-child, .guide:last-child { padding: 23px 38px 23px 0; border-right: 0; border-bottom: 1px solid var(--home-line); }
@@ -202,6 +224,8 @@
   .journalIntro > p:not(.kicker) { font-size: 14px; }
   .journalProcess h3 { font-size: 17px; }
   .journalProcess p { font-size: 12px; }
+  .membershipGrid article { padding:22px 20px; }
+  .faq h2 { font-size:32px; }
   .invitation h2 { font-size: 34px; }
   .invitation .reflectionNote { max-width: 280px; margin-inline: auto; }
   .footer nav { column-gap: 20px; row-gap: 0; }

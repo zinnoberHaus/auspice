@@ -1,4 +1,7 @@
 import type { MetadataRoute } from 'next';
+import { isPreview, siteUrl } from '@/lib/site';
 export default function robots(): MetadataRoute.Robots {
-  return { rules: [{ userAgent: '*', allow: '/', disallow: ['/api/', '/account', '/sanctuary', '/admin'] }], sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://auspice-red.vercel.app'}/sitemap.xml` };
+  // Allow app shells to be crawled so their noindex directive can be read.
+  // Authentication protects private data; robots.txt is not access control.
+  return { rules: [{ userAgent: '*', allow: '/', disallow: ['/api/'] }], ...(!isPreview && { sitemap: `${siteUrl}/sitemap.xml` }) };
 }

@@ -19,5 +19,5 @@ export default function GuideMetrics({ guide, href, enabled }: {
 
   return <Link className="button" href={href} onClick={() => {
     if (enabled) sendGuideMetric({ guide, event: 'open_sanctuary' });
-  }}>Begin a reflection <span aria-hidden="true">↗</span></Link>;
+  }}>Open the almanac <span aria-hidden="true">↗</span></Link>;
 }

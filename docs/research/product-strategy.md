@@ -1,10 +1,14 @@
 # Auspice product, pricing, and acquisition strategy
 
-Research observed: **October 10, 2026**. Owner: Zinnober Haus. This document separates verified public evidence from launch recommendations. It does not establish product completeness, market demand, search rankings, or working payments.
+Research observed and almanac launch recommendation revised: **October 10, 2026**. Owner: Zinnober Haus. This document separates verified public evidence from launch recommendations. It does not establish product completeness, market demand, search rankings, or working payments. The [launch report](../../reports/Auspice%20almanac%20launch%20strategy.md) includes the 30-day calendar, prepared channel copy, and measurement gates; its [pricing](../../research_notes/Auspice%20almanac%20launch%20strategy/pricing.md) and [acquisition](../../research_notes/Auspice%20almanac%20launch%20strategy/acquisition.md) notes preserve source details and alternatives.
 
 ## Product position
 
-**Recommendation:** a calm, private place to explore tarot, astrology, I Ching, and feng shui around real questions about home, career, relationships, and personal direction. The useful outcome is a considered question, an understandable interpretation, and a reflection the person can revisit.
+**Recommendation:** a modern almanac for everyday reflection: draw a card, look at a home more closely, or make room for a meaningful day. Lead the public launch with the functioning guest tools and original guides. Private saved readings and the journal remain account-dependent; production account access is blocked by the documented trusted-domain setting until verified otherwise. Paid membership is not active. The useful first outcome is a clearer question and an ordinary next step, not a promise of prediction.
+
+The supplied paper, ink and cinnabar design gives this practice a consistent visual identity. It does not establish calculation accuracy or willingness to pay. Guest tarot spreads and home/date drafts are unsaved. The date planner is not an auspicious-date calculator, and the home planner compares entered observations rather than scoring properties. Keep these limits visible where people choose the tools. See the [design mapping](design-implementation.md) and [current release evidence](../operations/release-readiness.md).
+
+Begin with tarot-curious reflective beginners as an audience hypothesis, with people comparing homes or planning a milestone as adjacent use cases. The homepage should offer one primary guest-tarot action, a guide link, a real interaction preview, and practical home/date examples before discussing account features. No demographic, audience-size, traffic, or demand claim supports this hypothesis yet.
 
 Keep the traditions identifiable. Explain the method and inputs behind each reading and distinguish calculated or drawn elements from interpretation. Do not present agreement between traditions as scientific validation or promise predictions, wealth, romantic certainty, or a successful property purchase. Unknown birth time must remain unknown rather than produce a fabricated ascendant. Housing and career reflections should complement practical investigation and professional advice where needed.
 
@@ -27,17 +31,20 @@ Source discrepancies matter. Co–Star's FAQ describes revenue as à-la-carte wh
 
 ## Launch pricing hypothesis
 
-Recommend **Free + Auspice Plus at $11.99/month or $107.99/year**. The annual price is about $9/month paid upfront and approximately 25% less than twelve monthly payments. Show the full annual charge prominently. This is an experiment anchored in the observed $8.99–$14.99 monthly range, not evidence of willingness to pay for Auspice.
+Recommend **Free + proposed Auspice Plus at $11.99/month or $107.99 billed annually**. The annual price is about $9/month equivalent and 24.94% below twelve monthly payments; public copy can say “about 25% less.” Show the full annual charge prominently. This is an experiment anchored in the observed $8.99–$14.99 monthly range, not evidence of willingness to pay for Auspice.
 
-| Capability | Free | Plus, once implemented and verified |
+| Capability | Free | Plus, proposed and not on sale |
 | --- | --- | --- |
-| Traditions and public educational library | All four traditions | All four traditions |
-| Completed personalized interpretations | 3 per month | 30 per month |
-| Interpretation depth | Standard reflection and a journal prompt | Deeper interpretation, comparison across selected traditions, saved context |
-| Journal | Save, revisit, export, delete | Same rights, plus useful continuity across prior reflections |
-| Daily ritual | Lightweight draw or editorial prompt | Same; deeper personalization uses the stated allowance |
+| Guest tarot, practical planners and public guides | Available without an account; drafts are unsaved | Same guest tools |
+| Traditions in personal readings | Tarot, I Ching, approximate sun-sign reflection, entry-aligned feng shui and synthesis | Same methods and limits |
+| Completed personalized interpretations | 3 per calendar month for a usable verified account; current account-access restriction applies | Proposed 30 per monthly allowance period, once payment and entitlements work |
+| Journal rights | Read, annotate, export and delete with account access | Same rights; preserve existing journal access after cancellation |
 
-Do not charge for the table's planned features until their actual behavior matches the offer. Keep the first ritual accessible before requiring an account where technically appropriate; require an account for private synchronization and metered personalized service. Never expose an authenticated user's reading to another user.
+**The public Plus proposal is an allowance difference only.** Do not promise deeper interpretations, superior accuracy, exclusive multi-tradition synthesis, saved planner context, or continuity across past readings. Those are possible research directions, not accepted launch entitlements or implemented paid features. The larger allowance alone is a commercial hypothesis to test; a more elaborate visual design is not evidence of recurring value.
+
+Do not charge until the actual service matches the proposed offer. Keep the guest ritual accessible before requiring an account; require an account for private synchronization and metered personalized service. Never expose an authenticated user's reading to another user. Separate “guest tools available now,” “account features temporarily unavailable,” and “Plus planned” on the pricing page rather than combining them into a functioning signup promise.
+
+The current pricing page has **no subscription, trial, email-waitlist or interest form**. The legacy interest component and authenticated endpoint are retained, but the page does not render the component. The endpoint only records a signed-in account's plan preference; it is **not contact consent, an email waitlist, notification signup, subscription, or payment authorization**. Explain that scope if a preference control is exposed in a future release, and do not funnel guests into a known-broken signup path to record it. A future monthly/annual preference selector cannot promise contact or pricing. No trial CTA is justified by an unimplemented preview idea.
 
 Define a reading as one submitted question and one completed interpretation. A follow-up requesting a new interpretation uses another reading; opening a saved result, exporting, and journaling do not. Show remaining allowance before submission. Failed attempts consume no allowance, retries must be idempotent, and the server enforces the limit. Planned monthly subscriptions should reset on their billing anniversary; annual plans should replenish monthly rather than granting 360 immediately. The implemented free allowance resets on the first of each calendar month in UTC, as disclosed in the account and pricing pages. Cancellation should preserve access to and export of the user's own existing journal.
 
@@ -57,8 +64,10 @@ The following calculation uses `fee = charge × 0.036 + 0.30`. Reading costs are
 | Remaining contribution at $0.05 | **$9.76** | **$7.15** |
 | Reading cost at assumed $0.15 each | $4.50 | $4.50 |
 | Remaining contribution at $0.15 | **$6.76** | **$4.15** |
+| Reading cost at assumed $0.30 each | $9.00 | $9.00 |
+| Remaining contribution at $0.30 | **$2.26** | **−$0.35** |
 
-Remaining contribution excludes hosting, storage, support, email, taxes, refunds, disputes, acquisition, and native-store commissions. It is not profit. Three free readings cost an assumed $0.15–$0.45 per fully active free account before these other expenses. Include that free-user cost when evaluating paid conversion and acquisition. Do not promise unlimited personalized service or deepen the annual discount before measuring real usage.
+Remaining contribution excludes hosting, storage, support, email, taxes, refunds, disputes, acquisition, and native-store commissions. It is not profit. Three free readings cost an assumed $0.15–$0.45 per fully active free account at the two lower cost scenarios before these other expenses. Include that free-user cost when evaluating paid conversion and acquisition. The annual offer already loses money before overhead in the $0.30/full-use scenario; measure delivered cost, including failures and retries, before wider annual sales. Do not promise unlimited personalized service or deepen the annual discount before measuring real usage.
 
 **Current payment setup status:** the coordinator's October 10 Vercel Stripe integration attempt returned `action_required` with reason `integration_terms_acceptance_required`. The account owner must accept the integration terms before that setup can continue. This is a pending owner action, not evidence that Stripe rejected the business or that a category restriction was found. The research agent did not provision or verify a Stripe account.
 
@@ -68,12 +77,7 @@ Before accepting subscriptions, prove authenticated checkout, signed and idempot
 
 Google's guidance favors original content that helps people, with clear authorship and useful substance. Auspice should compete through clear methods, original examples, and useful tools rather than a large collection of near-identical sign, city, or question pages. No ranking or traffic forecast is justified by this research. [Google helpful-content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content).
 
-Publish an initial editorial library of approximately 12 substantive guides. This quantity is a planning recommendation, not a ranking requirement. Suggested groups:
-
-- **Tarot:** how to ask a career question; a three-card reflection exercise; reading the suits and court cards.
-- **I Ching:** casting and recording a reading; understanding changing lines; asking an open-ended question.
-- **Feng shui:** bedroom layout considerations; desk placement and a usable workspace; questions to consider when visiting a potential home.
-- **Astrology:** reading a birth chart; what birth time changes; understanding Sun, Moon, and rising signs without conflating them.
+The launch foundation is the existing nine substantive guides plus a dedicated `/free-tarot` page with the actual guest table and original explanatory content. The new public page is being implemented in the almanac launch workstream; source presence is not proof of deployment, browser usability or indexing. Link it from the homepage, relevant tarot/journal guides and sitemap. Do not make indexing sanctuary query variants the acquisition strategy. Future guides should answer observed reader questions rather than meet a page-count quota. The [editorial record](editorial-plan.md) tracks source and verification boundaries.
 
 Each guide should explain the tradition, show a worked example, cite sources, state limits, identify actual authors/reviewers, record a meaningful update date, and link to the relevant free experience. Do not invent a reviewer or imply a practitioner reviewed content when they did not. Sources and asset/translation permissions require review before publication.
 
@@ -82,21 +86,23 @@ Technical implementation requirements:
 - Give every public guide a stable URL, unique title and description, visible heading, canonical URL, accessible HTML, and mobile-friendly layout.
 - Use real `<a href>` links with descriptive text; every important page should have an internal link. [Google link guidance](https://developers.google.com/search/docs/crawling-indexing/links-crawlable).
 - Put preferred public canonical URLs in the sitemap, reference it from `robots.txt`, and submit it in Search Console once ownership is verified. Submission is a discovery hint, not a guarantee of indexing. [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+- Keep the page title, visible main heading, description, canonical and social-preview promise consistent. Use original helpful HTML alongside the interactive tool; metadata cannot substitute for a useful page. Google can choose different title/snippet text. [Title guidance](https://developers.google.com/search/docs/appearance/title-link), [snippet guidance](https://developers.google.com/search/docs/appearance/snippet), [JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).
+- Google ignores sitemap `priority` and `changefreq`. Maintain `lastmod` only when it reflects meaningful content changes. Useful visible Q&A can remain, but FAQ rich results were retired in May 2026 and their documentation removed in June; do not sell FAQ markup as a launch benefit. [Sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), [Google update history](https://developers.google.com/search/updates).
 - Use accurate JSON-LD only for relevant, visible content, such as articles, breadcrumbs, and application information. Never fabricate reviews or ratings. Validate applicable markup; correct markup does not guarantee rich results. [Google structured-data policies](https://developers.google.com/search/docs/appearance/structured-data/sd-policies).
-- Keep personal readings, journals, account routes, and private share previews out of search indexes and the public sitemap. Enforce authentication and per-user authorization: `noindex` and `robots.txt` are not privacy controls.
+- Keep personal readings, journals, account routes, and private share previews out of search indexes and the public sitemap. Enforce authentication and per-user authorization: `noindex` and `robots.txt` are not privacy controls. If the goal is to remove a public app-shell URL from results, Google must be able to crawl it to observe `noindex`; robots disallow alone can leave a URL indexed without content. [Noindex guidance](https://developers.google.com/search/docs/crawling-indexing/block-indexing).
 - Verify crawlability, rendered content, canonical URLs, sitemap routes, and mobile experience on the deployed production domain. Search Console access, indexing, performance, and rankings remain unverified until checked there.
 
 Recommended acquisition sequence:
 
-1. Release useful free experiences and the original guide library; measure whether visitors complete and save a first reflection.
-2. Add previewable, opt-in share cards. Exclude birth information, addresses, personal questions, and journal text by default. Never publish private content automatically.
-3. Offer optional weekly reflection emails with straightforward unsubscribe. Avoid pressure, streak penalties, and ominous notifications.
-4. Pursue educational collaborations with identifiable practitioners and creators after there is a verifiable product to demonstrate. Outreach and publication are separate actions requiring their assigned scope.
-5. Test paid acquisition only after retention and actual contribution support a bounded experiment. Set a budget from measured economics rather than assuming an industry acquisition cost.
+1. Verify the guest experience, truthful homepage/pricing and public search entry page. Use a first week for source/browser/crawl checks and Search Console setup when the owner has access.
+2. Prepare original exercises and actual interface demonstrations for an existing owned or permissioned audience. Share nothing automatically; exclude birth information, addresses, personal questions and journal text from public assets.
+3. Gather voluntary feedback about question framing, card interpretation and practical next steps; improve the existing pages. Use the current anonymous guide totals and available Search Console evidence with their limitations.
+4. Prepare creator collaborations or optional email only for an authorized, working channel. An account price-preference record is not email consent or a mailing list. Avoid pressure, streak penalties and ominous notifications.
+5. Promote account features only after production identity access and email flows are verified. Promote paid membership only after payment, entitlement and billing lifecycle gates pass. Test paid acquisition later with measured costs, retention, a bounded approved budget and stop conditions.
 
-The intended funnel is **public guide visit → first completed and saved reflection → return visit → subscription**. In the current app, completing a reading and saving it are one atomic operation, not separate conversion stages. Define events without collecting raw questions, birth data, or journal text into analytics. Track search impressions/clicks by landing page; completion and save rates; seven- and thirty-day return; trial-to-paid or free-to-paid conversion with explicit cohort windows; cancellations; paid renewal; delivered reading cost; support load; and acquisition cost per retained subscriber. Set numeric targets after an initial baseline rather than inventing market benchmarks.
+The immediate journey is **public page or guide → useful guest exercise → a practical next step**. The later account journey is **verified account → completed saved reflection → meaningful return → optional subscription**, subject to the operational gates. Completing a personal reading and saving it are one atomic operation, not separate conversion stages. Guest spreads are a different unsaved action. Future measurement should distinguish these behaviors without collecting raw questions, birth data, home details or journal text into analytics. Account activation, seven/thirty-day recurrence, payment, renewal and delivered cost require explicit designs and actual evidence before targets are set.
 
-The initial implemented measurement is deliberately narrower: daily public-guide view events and guide-to-sanctuary click events, with a [read-only operator report](../operations/guide-measurement.md). It collects no visitor identifier, so it cannot attribute a completed reading to a guide, count unique visitors, or establish retention or paid conversion. Evaluate the initial event counts as a directional editorial baseline, then decide whether further measurement is justified. Search Console ownership, human traffic and the broader funnel remain unverified.
+The initial implemented measurement is deliberately narrower: daily public-guide view events and guide-to-sanctuary click events, with a [read-only operator report](../operations/guide-measurement.md). It does not measure homepage/free-tarot visits, guest-draw completion or social-source attribution. It collects no visitor identifier, so it cannot count unique people, attribute readings to guides, or establish retention or paid conversion. Click/view ratios are event ratios and can exceed one. Evaluate them as a directional editorial baseline, then decide whether further measurement is justified. Search Console ownership, human traffic and the broader funnel remain unverified.
 
 ## Evidence limits and release status
 
