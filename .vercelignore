@@ -1,0 +1,14 @@
+.env*
+.git/
+.agents/
+.codex/
+.github/
+node_modules/
+.next/
+desktop/
+release/
+docs/
+tests/
+scripts/
+coverage/
+*.tsbuildinfo

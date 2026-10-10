@@ -1,0 +1,30 @@
+.main { padding-top: 42px; padding-bottom: 70px; }
+.heading { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 28px; }
+.heading h1 { font-size: clamp(32px, 5vw, 48px); margin: 6px 0 12px; }
+.heading p { line-height: 1.6; }
+.search { display: flex; gap: 16px; align-items: end; margin-bottom: 28px; }
+.searchText { flex: 1; }
+.search button { margin-bottom: 0; }
+.users { list-style: none; padding: 0; }
+.user { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.identity { min-width: 0; }
+.identity h2 { font-size: 24px; margin-bottom: 8px; }
+.identity small { font-size: 14px; }
+.email { overflow-wrap: anywhere; margin-bottom: 8px; }
+.details { font-size: 13px; line-height: 1.8; color: var(--muted); }
+.id { display: block; font-size: 11px; margin-top: 8px; overflow-wrap: anywhere; }
+.actions { display: flex; flex-direction: column; flex-shrink: 0; align-items: flex-start; gap: 16px; }
+.confirmation { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: #fcfafc; margin-bottom: 28px; }
+.confirmation h2 { font-size: 28px; margin-bottom: 12px; }
+.confirmation p { line-height: 1.7; margin-bottom: 14px; overflow-wrap: anywhere; }
+.confirmation form { display: grid; gap: 16px; }
+.pagination { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 28px; font-size: 13px; }
+@media (max-width: 640px) {
+  .search { flex-wrap: wrap; }
+  .search > label { width: 100%; flex: auto; }
+  .user { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .actions { flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .heading { align-items: flex-start; }
+  .pagination { flex-wrap: wrap; }
+  .confirmation { padding: 18px; }
+}

@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible Auspice problem.
+body:
+  - type: markdown
+    attributes:
+      value: Do not include journal content, passwords, tokens, private email addresses or other sensitive data. Use private vulnerability reporting for security issues.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser or desktop version and operating system
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Remove account and reading details before sharing screenshots or logs.

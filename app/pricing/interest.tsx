@@ -1,0 +1,4 @@
+'use client';
+import {useState} from 'react';
+import Link from 'next/link';
+export default function Interest(){const [message,setMessage]=useState('');const [busy,setBusy]=useState(false);const [login,setLogin]=useState(false);return <div><button className="button" disabled={busy} onClick={async()=>{setBusy(true);try{const r=await fetch('/api/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:'monthly'})});const d=await r.json();if(r.status===401)setLogin(true);setMessage(r.ok?'Your interest is saved. No payment or subscription has been created.':d.error);}catch{setMessage('Could not save your interest. Please try again.');}finally{setBusy(false);}}}>{busy?'Saving…':'I’m interested in Plus'}</button>{message&&<p role="status">{message} {login&&<Link href="/account">Sign in</Link>}</p>}</div>}
