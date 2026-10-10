@@ -5,16 +5,17 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 ## Observed working
 
 - Provisioned GitHub repository, Vercel application, Neon database and Managed Better Auth.
-- Real email/password signup and session cookies; verified synthetic identity sign-in; rejection of unverified reading requests; sign-out and protected API rejection.
+- Through the local application against the real provisioned services: email/password signup and session cookies; verified synthetic identity sign-in; rejection of unverified reading requests; sign-out and protected API rejection. The production-domain exception is recorded below.
 - Real structured interpretation through the configured gateway, persisted private journal, idempotent retry using one allowance, note update, JSON export, content deletion, and deleted-request replay returning HTTP 410.
 - Other-account journal mutation requests return HTTP 404. Account deletion reauthenticates with the provider and atomically cascades through owned records. See [erasure decision](account-erasure.md).
 - Database rollback audit verifies erasure of all application tables, preservation of a different owner, and rejection of orphan recreation.
 - Tradition tests cover tarot deck constraints, all 4,096 three-coin outcomes, the 64 canonical hexagrams, changing lines and date validation.
 - Nine server-rendered guide routes return HTTP 200 and an unknown guide returns HTTP 404. Canonical metadata, sitemap, robots, article and breadcrumb structured data are implemented.
-- Production build and typechecking have passed locally; final revision/CI/deployment evidence is recorded below as it becomes available.
+- Production build and typechecking passed locally and in GitHub Actions. The final suite has 32 passing tests and two explicitly skipped database integration tests; the separate rollback database audit passed.
 
 ## Not yet proven or available
 
+- **Production account access is blocked:** the public-domain signup test returned HTTP 403 `INVALID_ORIGIN`. The provider needs the exact `https://auspice-red.vercel.app` origin in its trusted-domain configuration. Public guides and guest tools are available; production signup and subsequent private flows are not passed. See [the corrective steps](deployment.md#production-auth-domain-correction).
 - Original design fidelity: the supplied Downloads ZIP was denied by the operating system. No archive content was recovered or invented.
 - Visual/accessibility device review: no browser surface was connected. Source inspection and HTTP checks do not substitute for rendering checks.
 - Delivered verification/recovery emails: fixtures used a narrowly scoped database verification step, not a real mailbox. Production SMTP/domain settings need verification.
@@ -26,4 +27,10 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 
 ## Release records
 
-Initial Vercel deployment: `dpl_12b7SMWo2Dqgz7C3ySnCeQiDQvfW`, ready, public alias `https://auspice-red.vercel.app`. Final source revision and subsequent deployment are pending release integration.
+Source: [`a628a76`](https://github.com/zinnoberHaus/auspice/commit/a628a76e266016686e28e92650e8357eec99a3f1), merged through [PR 1](https://github.com/zinnoberHaus/auspice/pull/1). Its tree matches the checked feature revision `7f6e6f6`. [GitHub web and desktop dependency checks](https://github.com/zinnoberHaus/auspice/actions/runs/38085612282) passed. Main requires the web and desktop dependency checks before merging.
+
+Production deployment: `dpl_DpQidgHgWnhy8pTnKe6Q9Ktt9jiE`, ready, immutable URL `https://auspice-o5m3o40s0-my-team-ae70891f.vercel.app`, public alias `https://auspice-red.vercel.app`. Public homepage, pricing, download, manifest, social image, font notices, robots, sitemap and all nine guides returned HTTP 200. Guide pages contain canonical and structured-data markup; unknown guide returned 404. Anonymous journal, export and admin APIs returned 401. Production signup returned 403 as described above; the smoke test stopped and its cleanup ran.
+
+[The macOS developer prerelease](https://github.com/zinnoberHaus/auspice/releases/tag/v0.1.0-alpha.1) is published with Apple Silicon and Intel archives, SHA256SUMS and sanitized package-verification evidence. GitHub's uploaded asset digests match the local verified archives. The previews retain their ad-hoc-signature and native-testing limitations.
+
+The initial deployment `dpl_12b7SMWo2Dqgz7C3ySnCeQiDQvfW` predates later fixes and is retained only as historical evidence; it is not the current release candidate.

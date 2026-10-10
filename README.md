@@ -4,7 +4,7 @@ A calm place for tarot, I Ching, astrology, and feng shui. A responsive web sanc
 
 [Open Auspice](https://auspice-red.vercel.app) · [Practice guides](https://auspice-red.vercel.app/guides) · [Desktop releases](https://github.com/zinnoberHaus/auspice/releases)
 
-**Status: public alpha.** Working services and release evidence are recorded in [operations](docs/operations/release-readiness.md). The supplied design ZIP was not readable in the development environment, so the current visual design is provisional. Paid membership is an interest list, not an active subscription. This release does not include a professional birth chart, guaranteed predictions, or a traditional compass-school feng shui assessment.
+**Status: public alpha.** Public guides and guest tools are available. Production signup is currently blocked by the Auth provider's trusted-domain setting; [the corrective steps](docs/operations/deployment.md#production-auth-domain-correction) and [release evidence](docs/operations/release-readiness.md) record the exact state. The supplied design ZIP was not readable in the development environment, so the current visual design is provisional. Paid membership is an interest list, not an active subscription. This release does not include a professional birth chart, guaranteed predictions, or a traditional compass-school feng shui assessment.
 
 ## What works
 
