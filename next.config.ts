@@ -7,7 +7,9 @@ const config: NextConfig = {
       { key: 'X-Frame-Options', value: 'DENY' },
       { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
       { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-    ] }, { source: '/account/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }];
+    ] }, ...['/account/:path*', '/sanctuary/:path*', '/admin/:path*', '/api/:path*',
+      ...(process.env.VERCEL_ENV === 'preview' || process.env.VERCEL_ENV === 'development' ? ['/:path*'] : []),
+    ].map(source => ({ source, headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }))];
   },
 };
 export default config;

@@ -1,3 +1,5 @@
+import { siteUrl } from './site';
+
 export type GuideTradition = "tarot" | "iching" | "fengshui" | "astrology" | "reflection";
 
 export type Guide = {
@@ -427,4 +429,4 @@ export function guideReadingMinutes(guide: Guide): number {
   return Math.max(1, Math.ceil(words / 200));
 }
 
-export const guideSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://auspice-red.vercel.app").replace(/\/$/, "");
+export const guideSiteUrl = siteUrl;

@@ -1,29 +1,34 @@
 import Link from 'next/link';
 import { ArrowUpRight, BookOpen, Compass, Moon, Sparkles } from 'lucide-react';
+import { publicPageMetadata } from '@/lib/site';
 import styles from './home.module.css';
 
-export const metadata = { alternates: { canonical: '/' } };
+export const metadata = publicPageMetadata({
+  title: 'A Modern Almanac for Your Next Chapter',
+  description: 'Find a little perspective with free tarot spreads, home and date planners, and guides to I Ching, astrology and feng shui. Guest tools need no account.',
+  path: '/',
+});
 
 const traditions = [
   {
-    name: 'Tarot', icon: Sparkles, slug: 'tarot', method: 'Cards & symbols',
-    description: 'A three-card reading to consider what matters, what needs attention, and a next step.',
-    question: 'What am I not seeing yet?',
+    name: 'Tarot', icon: Sparkles, slug: 'tarot', method: 'Cards & symbols', href: '/free-tarot',
+    description: 'Turn one, three or ten cards from the full 78-card deck. Read the meanings and notice what comes to mind.',
+    question: 'Try a free tarot spread',
   },
   {
-    name: 'I Ching', icon: BookOpen, slug: 'iching', method: 'The Book of Changes',
-    description: 'A three-coin cast, changing lines, and a different way to meet what is unfolding.',
-    question: 'How can I meet this change?',
+    name: 'I Ching', icon: BookOpen, slug: 'iching', method: 'The Book of Changes', href: '/guides/i-ching-three-coin-method',
+    description: 'Learn the three-coin method, six lines and the changes between them. Begin with a question that leaves room to reflect.',
+    question: 'Read the casting guide',
   },
   {
-    name: 'Astrology', icon: Moon, slug: 'astrology', method: 'Sun-sign reflection',
-    description: 'Explore the seasonal symbolism of your sun sign as a prompt for understanding yourself.',
-    question: 'What could I make room for?',
+    name: 'Astrology', icon: Moon, slug: 'astrology', method: 'Sun-sign reflection', href: '/guides/understanding-your-sun-sign',
+    description: 'Explore sun-sign symbolism and its limits. Learn why birth time matters for a fuller chart.',
+    question: 'Explore the sun-sign guide',
   },
   {
-    name: 'Feng shui', icon: Compass, slug: 'fengshui', method: 'Space & everyday life',
-    description: 'Consider your home through an entrance-aligned bagua and the way you actually live.',
-    question: 'What would help this space feel better?',
+    name: 'Feng shui', icon: Compass, slug: 'fengshui', method: 'Space & everyday life', href: '/sanctuary?tool=homes',
+    description: 'Record light, noise and layout. Explore an entrance-aligned bagua as a symbolic lens on the way you live.',
+    question: 'Open the home planner',
   },
 ];
 
@@ -45,8 +50,8 @@ export default function Home() {
         <nav className={styles.navigation} aria-label="Main navigation">
           <Link href="/guides">The library</Link>
           <Link href="/pricing">Membership</Link>
-          <Link href="/account">Sign in</Link>
-          <Link href="/sanctuary" className={styles.navigationCta}>Open Auspice <ArrowUpRight size={15} aria-hidden="true" /></Link>
+          <Link href="/sanctuary">The almanac</Link>
+          <Link href="/free-tarot" className={styles.navigationCta}>Free tarot <ArrowUpRight size={15} aria-hidden="true" /></Link>
         </nav>
       </header>
 
@@ -58,13 +63,13 @@ export default function Home() {
 
         <section className={styles.hero} aria-labelledby="home-title">
           <div className={styles.heroCopy}>
-            <h1 id="home-title">Four old ways of knowing.<br />One place to begin.</h1>
-            <p className={styles.introduction}>A new home. A career crossroads. A question you keep returning to. Bring it to Auspice, explore another perspective, and find a small next step.</p>
+            <h1 id="home-title">A little perspective for your next chapter.</h1>
+            <p className={styles.introduction}>A new home. A career crossroads. A question you keep returning to. Explore tarot, I Ching, astrology and feng shui, with room for your own judgment.</p>
             <div className={styles.heroActions}>
-              <Link href="/sanctuary" className={styles.primaryLink}>Begin with a free card <ArrowUpRight size={17} aria-hidden="true" /></Link>
+              <Link href="/free-tarot" className={styles.primaryLink}>Draw a free tarot spread <ArrowUpRight size={17} aria-hidden="true" /></Link>
               <Link href="#traditions" className={styles.textLink}>Find your practice</Link>
             </div>
-            <p className={styles.heroNote}>No account needed for your first card.</p>
+            <p className={styles.heroNote}>No account or payment. One card, three cards or Celtic Cross.</p>
           </div>
 
           <aside className={styles.questionPanel} aria-labelledby="question-heading">
@@ -74,25 +79,27 @@ export default function Home() {
             </div>
             <p className={styles.panelNote}>There is more than one way into a question.</p>
             <div className={styles.questionList}>
-              <Link href="/sanctuary?tool=tarot">
-                <span><small>A change at work</small><span>What matters in my next chapter?</span></span>
+              <Link href="/free-tarot">
+                <span><small>A change at work · free tarot</small><span>What deserves my attention?</span></span>
                 <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
-              <Link href="/sanctuary?tool=fengshui">
-                <span><small>A place to call home</small><span>How could my space support me?</span></span>
+              <Link href="/sanctuary?tool=homes">
+                <span><small>A place to call home · home planner</small><span>What do I notice about this space?</span></span>
                 <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
-              <Link href="/sanctuary?tool=iching">
-                <span><small>Something still unfolding</small><span>How can I move with this change?</span></span>
+              <Link href="/sanctuary?tool=dates">
+                <span><small>A moment ahead · date planner</small><span>What would help me feel prepared?</span></span>
                 <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
             </div>
-            <Link href="/sanctuary?tool=synthesis" className={styles.synthesisLink}>
-              <span>Or bring several traditions together</span>
+            <Link href="/guides" className={styles.synthesisLink}>
+              <span>Learn how each practice works</span>
               <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </aside>
         </section>
+
+        <p className={styles.availability}><strong>Guest tools are open.</strong> Account access, personal readings and saved journals are temporarily unavailable. <Link href="/pricing#availability">See what is available</Link>.</p>
 
         <section className={styles.traditions} id="traditions" aria-labelledby="traditions-heading">
           <div className={styles.sectionHeading}>
@@ -101,7 +108,7 @@ export default function Home() {
           </div>
           <div className={styles.traditionGrid}>
             {traditions.map(tradition => (
-              <Link href={`/sanctuary?tool=${tradition.slug}`} className={styles.tradition} key={tradition.slug}>
+              <Link href={tradition.href} className={styles.tradition} key={tradition.slug}>
                 <div className={styles.traditionTitle}>
                   <tradition.icon size={25} strokeWidth={1.3} aria-hidden="true" />
                   <span className={styles.method}>{tradition.method}</span>
@@ -114,19 +121,34 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.journalSection} aria-labelledby="journal-heading">
+        <section className={styles.journalSection} aria-labelledby="practice-heading">
           <div className={styles.journalIntro}>
-            <p className={styles.kicker}>Your private journal</p>
-            <h2 id="journal-heading">A reading is a beginning.<br />Return to what unfolds.</h2>
-            <p>Save the question, the symbols, and your own reflections. Notice what still resonates when you come back with a little distance.</p>
-            <Link href="/sanctuary?tool=journal" className={styles.textLink}>Open your journal <ArrowUpRight size={16} aria-hidden="true" /></Link>
+            <p className={styles.kicker}>A practice you can make your own</p>
+            <h2 id="practice-heading">A small pause.<br />Something to take with you.</h2>
+            <p>You do not have to take every interpretation to heart. Use the symbols to notice a question, check an assumption, or name one thing you want to try.</p>
+            <Link href="/guides/reflective-reading-journal" className={styles.textLink}>Try a reflection journal <ArrowUpRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className={styles.journalProcess}>
-            <div><span aria-hidden="true">01</span><div><h3>Bring a real question</h3><p>A few plain words are enough. Choose a tradition or ask for a synthesis.</p></div></div>
-            <div><span aria-hidden="true">02</span><div><h3>Consider the reading</h3><p>See the symbols and their interpretation, with a small practice to try.</p></div></div>
-            <div><span aria-hidden="true">03</span><div><h3>Make your own meaning</h3><p>Add a private note. Revisit, export, or delete your saved reflections.</p></div></div>
-            <p className={styles.accountNote}>Personal readings and your journal use an account. <Link href="/pricing">See the free allowance</Link>.</p>
+            <div><span aria-hidden="true">01</span><div><h3>Hold a question in mind</h3><p>Choose something you can explore. The guest tarot table does not ask you to submit your question.</p></div></div>
+            <div><span aria-hidden="true">02</span><div><h3>Notice what the cards bring up</h3><p>Read each meaning in its position. Consider where it fits your experience, and where it does not.</p></div></div>
+            <div><span aria-hidden="true">03</span><div><h3>Write down your next step</h3><p>Use a notebook or the journal guide. Come back later and see what you think with a little distance.</p></div></div>
+            <p className={styles.accountNote}>Guest spreads and planner drafts are unsaved. The account journal is temporarily unavailable.</p>
           </div>
+        </section>
+
+        <section className={styles.membership} aria-labelledby="membership-heading">
+          <div className={styles.sectionHeading}><h2 id="membership-heading">Begin with an open door.</h2><Link href="/pricing" className={styles.textLink}>Membership & availability <ArrowUpRight size={16} aria-hidden="true" /></Link></div>
+          <div className={styles.membershipGrid}>
+            <article><p className={styles.kicker}>Available now</p><h3>Free to explore</h3><p>Guest tarot spreads, home and date planners, and the practice library. No account or payment needed.</p><Link href="/free-tarot" className={styles.textLink}>Draw a free spread <ArrowUpRight size={16} aria-hidden="true" /></Link></article>
+            <article><p className={styles.kicker}>Proposed · not on sale</p><h3>Plus <span>$11.99 <small>USD / month</small></span></h3><p>Planned: 30 personal readings per month. Or $107.99 USD billed annually, with a monthly reading allowance.</p><p className={styles.priceNote}>About 25% less than twelve monthly payments. There is no subscription checkout yet.</p></article>
+          </div>
+        </section>
+
+        <section className={styles.faq} aria-labelledby="faq-heading">
+          <h2 id="faq-heading">A few things to know.</h2>
+          <details><summary>What can I use without an account?</summary><p>The free tarot table, home-comparison planner, date planner and all practice guides. Your tarot spread and planner drafts are not saved to an account. The date planner can download a calendar file in your browser.</p></details>
+          <details><summary>Does Auspice predict what will happen?</summary><p>Auspice offers symbolic reflection. It does not verify future events, score properties or calculate auspicious dates. Astrology here focuses on approximate sun-sign symbolism, not a full natal chart. Your judgment and practical information remain part of every decision.</p></details>
+          <details><summary>Can I save a personal reading or join Plus?</summary><p>Account access, personal readings and the saved journal are temporarily unavailable. Plus is a proposed membership, with no paid checkout. <Link href="/pricing">The membership page</Link> explains the free allowance and planned pricing.</p></details>
         </section>
 
         <section className={styles.library} aria-labelledby="library-heading">
@@ -150,7 +172,7 @@ export default function Home() {
           <span className={styles.invitationSeal} aria-hidden="true">吉</span>
           <h2 id="invitation-heading">Make a little room for perspective.</h2>
           <p>No perfect question needed.</p>
-          <Link href="/sanctuary" className={styles.primaryLink}>Open your almanac <ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <Link href="/free-tarot" className={styles.primaryLink}>Draw a free tarot spread <ArrowUpRight size={17} aria-hidden="true" /></Link>
           <p className={styles.reflectionNote}>For reflection and personal exploration. Your choices remain yours.</p>
         </section>
       </main>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { socialImage } from "@/lib/site";
 import { guides, guideReadingMinutes, guideSiteUrl, traditionLabels, type GuideTradition } from "@/lib/guides";
 import styles from "./guides.module.css";
 
@@ -7,7 +8,10 @@ export const metadata: Metadata = {
   title: { absolute: "Guides to Tarot, I Ching, Feng Shui & Astrology | Auspice" },
   description: "Practical guides to tarot questions, I Ching casting, feng shui at home, astrology, and reflective journaling. Learn a tradition and try a thoughtful exercise.",
   alternates: { canonical: `${guideSiteUrl}/guides` },
+  twitter: { card: "summary_large_image", title: "Tarot, I Ching, Feng Shui & Astrology Guides | Auspice", description: "Practical guides, original exercises and clear methods for reflective practice.", images: [socialImage] },
   openGraph: {
+    siteName: "Auspice",
+    images: [socialImage],
     title: "Auspice guides · A thoughtful place to begin",
     description: "Explore tarot, I Ching, feng shui, astrology, and the art of paying attention.",
     url: `${guideSiteUrl}/guides`,

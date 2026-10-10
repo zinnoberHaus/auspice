@@ -16,7 +16,8 @@ function CardFace({ name, number }: { name: string; number: number }) {
   return <><span className={styles.cardNumber}>{String(number).padStart(2, "0")}</span><svg className={styles.art} viewBox="0 0 70 70" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden="true"><circle cx="35" cy="35" r="24"/><circle cx="35" cy="35" r="18"/><path d="M35 5v60M5 35h60M14 14l42 42M14 56l42-42"/><path d="m35 19 5 11 12 5-12 5-5 11-5-11-12-5 12-5Z" fill="currentColor" stroke="none"/></svg><span className={styles.cardName}>{name}</span></>;
 }
 
-export default function TarotTable() {
+export default function TarotTable({ headingLevel = 1 }: { headingLevel?: 1 | 2 }) {
+  const Heading = headingLevel === 1 ? 'h1' : 'h2';
   const [spread, setSpread] = useState<Spread>("three");
   const [cards, setCards] = useState<Card[]>([]);
   const [revealed, setRevealed] = useState<number[]>([]);
@@ -36,7 +37,7 @@ export default function TarotTable() {
   }
   const showing = cards[selected] && revealed.includes(selected);
   return <section className={styles.table} aria-labelledby="tarot-table-title">
-    <div className={styles.heading}><div><p className={styles.label}>Cast / tarot</p><h1 id="tarot-table-title">Lay the question on the table.</h1><p>A free, unsaved spread. Turn the cards at your own pace.</p></div><a href="/guides/better-tarot-questions">A guide to asking ↗</a></div>
+    <div className={styles.heading}><div><p className={styles.label}>Cast / tarot</p><Heading id="tarot-table-title">Lay the question on the table.</Heading><p>A free, unsaved spread. Turn the cards at your own pace.</p></div><a href="/guides/better-tarot-questions">A guide to asking ↗</a></div>
     <div className={styles.toolbar}>
       <div className={styles.spreads} role="group" aria-label="Choose a tarot spread">{spreads.map(item => <button key={item.id} aria-pressed={spread === item.id} disabled={busy} onClick={() => { setSpread(item.id); setCards([]); setRevealed([]); setSelected(0); setError(""); }}>{item.label}</button>)}</div>
       <button className={styles.shuffle} disabled={busy} onClick={shuffle}>{busy ? "Shuffling…" : cards.length ? "Shuffle a new spread" : "Shuffle & lay the cards"}</button>

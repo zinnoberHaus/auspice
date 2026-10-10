@@ -1,6 +1,6 @@
 # Guide library editorial record
 
-Date: October 10, 2026. Author identity shown publicly: **Auspice Editorial**, an organizational byline. No practitioner review or endorsement is claimed.
+Date: October 10, 2026; revised for the supplied almanac launch. Author identity shown publicly on guides: **Auspice Editorial**, an organizational byline. No practitioner review or endorsement is claimed. See the [launch strategy report](../../reports/Auspice%20almanac%20launch%20strategy.md) for the current 30-day sequence and prepared, unsent channel copy.
 
 ## Implemented content
 
@@ -38,6 +38,22 @@ Canonical URLs use `NEXT_PUBLIC_SITE_URL` with the coordinated production fallba
 The byline and displayed date derive from the actual editorial identity and guide data. A future factual revision should update the date deliberately rather than refresh dates automatically for search engines. Keep citations next to the relevant section and preserve the distinction between sourced method details and Auspice's interpretation exercises. Link checks and a content review should accompany substantial edits.
 
 Future expansion should answer demonstrated reader questions. Useful candidates are an illustrated changing-line worksheet, a fully sourced tarot-deck structure guide, and accessible room-plan examples. Do not expand to thousands of sign/city combinations without distinct useful content, and do not copy copyrighted card artwork or translations without appropriate rights.
+
+## Almanac launch content and availability
+
+The current launch workstream adds `/free-tarot`, a public search entry with the real guest card table, instructions, spread comparisons, limits and links into the existing guides. The source now renders the shared table under a subordinate heading and uses page-specific metadata and visible breadcrumb markup. This is implementation-in-progress evidence, not confirmation of deployment, rendered device behavior or search indexing. Keep the private sanctuary and account-data boundary separate from the indexable educational page. [Public page source](../../app/free-tarot/page.tsx), [guest table](../../components/TarotTable.tsx).
+
+The page should answer the reader's whole immediate question: how to choose a one-card, three-card or Celtic Cross spread; how to reveal and revisit card meanings; what a position means; how to form a useful question; and what is or is not saved. State that cards are upright and guest spreads are unsaved. An illustrative spread must be labeled as an example rather than passed off as the visitor's draw. Card meanings and reflection exercises are original prompts, not claims of prediction or a professionally reviewed historical interpretation.
+
+Use the supplied paper, ink, cinnabar and almanac typography to make reading and tool use coherent. The seal is brand identity, not an authenticity credential. The homepage, captions and social previews must not reuse prototype personal profiles, property scores, planetary placements or auspicious-day claims. Home content should discuss entered light/noise/layout observations; date content should describe a real calendar and practical intention. Drafts are not saved or synchronized. [Design boundaries](design-implementation.md).
+
+Publication priorities are the free-tarot page, contextual links from the two tarot guides and journal guide, and one clearly explained home-viewing exercise. This replaces the earlier suggestion of an arbitrary 12-guide launch target. Add later content for actual reader questions or observed relevant search intent, not page volume. Each new page needs a useful purpose beyond changing a sign, city or date in a template. [Google's content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content).
+
+Keep visible Q&A for readers, but do not promise FAQ rich results: Google retired that feature in May 2026 and removed its documentation in June. Keep guide Article/BreadcrumbList markup relevant and truthful. Canonical links, internal URLs and sitemap entries must agree; Google ignores sitemap priority/changefreq, and update dates must reflect substantive work. [Google update history](https://developers.google.com/search/updates), [structured-data policy](https://developers.google.com/search/docs/appearance/structured-data/sd-policies), [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+
+Marketing availability needs the same editorial care as method descriptions. Guest tools and guides are the current public offer. Production account access remains blocked until operations verifies the correction; billing is not active. Plus public copy may propose **30 personal readings per month at $11.99/month or $107.99 billed annually**, but must not guarantee deeper output, exclusive synthesis, saved planner context, or continuing personal memory. The current pricing page has no subscription, trial, email-waitlist or interest form. The retained legacy component is not rendered there; its authenticated endpoint only stores a signed-in plan preference, not contact consent, a notification subscription or payment. [Pricing decision](product-strategy.md), [pricing page](../../app/pricing/page.tsx), [availability record](../../README.md).
+
+For the first month, prepare one introduction, a question-framing exercise, a home-viewing example and a date-planning demonstration. Use actual verified product captures or clearly labeled illustrations with synthetic input. Only an authorized owner should send or publish the prepared material. Record what readers actually ask, improve the relevant page, and avoid attributing reviews or expertise to nonexistent people. The current identifier-free guide counters cannot measure audience size, guest completion, return behavior or paid conversion. [Measurement limits](../operations/guide-measurement.md).
 
 ## Verification performed
 

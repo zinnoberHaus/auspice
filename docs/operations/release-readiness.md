@@ -20,7 +20,7 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 - Visual/accessibility device review: no browser surface was connected. Source inspection and HTTP checks do not substitute for rendering checks.
 - Delivered verification/recovery emails: fixtures used a narrowly scoped database verification step, not a real mailbox. Production SMTP/domain settings need verification.
 - Administrator activation and live administration: no owner account was guessed or granted privileges. Mocked authorization tests are separate from a live operator test.
-- Payments: Stripe terms await human acceptance. Plus is an interest list; there is no active billing.
+- Payments: Stripe terms await human acceptance. Plus remains proposed; the signed-in price preference is not an email waitlist, and there is no active billing.
 - SEO outcomes: indexed pages, rankings, acquisition and conversion have not been measured. The research and editorial plan are hypotheses, not traffic results.
 - Backup restore drill, production spending alarms and sustained operational monitoring remain launch work. Production, preview and development now have separate provisioned resources; retirement of legacy previews is recorded below.
 - Desktop signing/notarization and additional operating systems are not complete. Desktop packaging evidence is in [desktop operations](desktop.md).
@@ -50,3 +50,13 @@ Production deployment: `dpl_DpQidgHgWnhy8pTnKe6Q9Ktt9jiE`, ready, immutable URL 
 [The macOS developer prerelease](https://github.com/zinnoberHaus/auspice/releases/tag/v0.1.0-alpha.1) is published with Apple Silicon and Intel archives, SHA256SUMS and sanitized package-verification evidence. GitHub's uploaded asset digests match the local verified archives. The previews retain their ad-hoc-signature and native-testing limitations.
 
 The initial deployment `dpl_12b7SMWo2Dqgz7C3ySnCeQiDQvfW` predates later fixes and is retained only as historical evidence; it is not the current release candidate.
+
+## Almanac marketing and SEO update
+
+The landing page now leads with working guest tarot and planners. `/free-tarot` is a substantive public entry with the existing live card table; `/pricing` separates available guest tools, temporarily unavailable account features and proposed Plus. The old interest component is no longer rendered. No database migration, dependency, payment service, email campaign or tracking service was added.
+
+Local evidence on October 10, 2026: production build and typecheck passed; 54 tests passed with the same two opt-in database skips; the production dependency audit reported zero vulnerabilities. `npm run check:public` passed for all 16 sitemap pages, checking delivered HTML, one h1, unique titles, descriptions, canonical/social URLs, social images, parseable JSON-LD and indexing directives, plus private-route response headers. The check caught missing inherited social images on nested pages; explicit image metadata corrected the failure before the final passing run. Preview configuration separately passed the global noindex/header and canonical-origin assertions. HTTP guest draws returned 1/3/10 unique cards and no-store responses. The generated 1200×630 social image was visually inspected.
+
+Independent source reviews covered guest CTA destinations, truthful pricing/availability, metadata inheritance, JSON-LD escaping, React state reuse, focus controls and responsive CSS. The guide CTA destinations and narrow-header wrapping findings were corrected. No connected browser was available, so rendered mobile/desktop interactions remain unverified. Search Console access, indexing and business outcomes remain unverified. Account and payment gates above remain open.
+
+The reviewed change's pull request records CI and actual deployment evidence after it is observed. Prior production recovery point: commit `4d8a66f5aba61291acead4f1dbad1fa89b884eee`, deployment `dpl_8pQoeuArxaTaBBd4tkzYJAfaEtJR`. Restoring the prior frontend requires no schema rollback. See the [marketing/SEO runbook](marketing-seo.md) and [launch strategy](../../reports/Auspice%20almanac%20launch%20strategy.md).

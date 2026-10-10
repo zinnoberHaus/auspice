@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { socialImage } from "@/lib/site";
 import { notFound } from "next/navigation";
 import { getGuide, guides, guideReadingMinutes, guideSiteUrl, traditionLabels } from "@/lib/guides";
 import { guideMetricsEnabled } from "@/lib/guide-metrics";
@@ -21,8 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: guide.description,
     alternates: { canonical: url },
     authors: [{ name: "Auspice Editorial", url: `${guideSiteUrl}/guides` }],
-    openGraph: { type: "article", title: guide.title, description: guide.description, url, publishedTime: guide.date, authors: ["Auspice Editorial"] },
-    twitter: { card: "summary", title: guide.title, description: guide.description },
+    openGraph: { siteName: "Auspice", type: "article", title: guide.title, description: guide.description, url, publishedTime: guide.date, authors: ["Auspice Editorial"], images: [socialImage] },
+    twitter: { card: "summary_large_image", title: guide.title, description: guide.description, images: [socialImage] },
   };
 }
 
@@ -93,8 +94,9 @@ export default async function GuidePage({ params }: Props) {
         </aside>
         <section className={styles.cta} aria-labelledby="reflection-heading">
           <h2 id="reflection-heading">Bring a question of your own.</h2>
-          <p>Take a quiet moment in your sanctuary. Explore what is on your mind, then keep the reflection that feels useful.</p>
-          <GuideMetrics guide={guide.slug} href={`/sanctuary?tool=${guide.tool}`} enabled={guideMetricsEnabled(process.env)} />
+          <p>Explore the almanac with a guest card draw or planner. Personal readings and saved journals need an account; account access is temporarily unavailable.</p>
+          {guide.tool === "tarot" && <p><Link className="text-link" href="/free-tarot">Try a free tarot spread without an account</Link></p>}
+          <GuideMetrics guide={guide.slug} href={`/sanctuary?tool=${guide.tool === "tarot" ? "tarot" : guide.tool === "fengshui" ? "homes" : "today"}`} enabled={guideMetricsEnabled(process.env)} />
         </section>
         <nav className={styles.related} aria-label="Related guides">
           <h2>Continue exploring</h2>
