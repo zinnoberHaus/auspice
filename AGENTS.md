@@ -4,7 +4,7 @@ Read README.md and docs/research/product-strategy.md when present. Product code 
 
 Use assigned file ownership, preserve concurrent work, and verify user-visible flows. Never invent divination results, testimonials, citations, deployment evidence or feature completeness. Keep secrets out of source and logs. Do not market the implementation technology in the app. Present readings as reflection, not guarantees or professional advice.
 
-Design source: user-provided Auspice_ Holistic Divination App.zip; access pending. Do not claim fidelity until imported and verified.
+Design source: the readable user-provided Auspice_ Holistic Divination App (1).zip was imported on October 10, 2026. Follow docs/research/design-implementation.md for tokens, screen mappings and explicit calculation limits. Do not turn prototype fixtures into live results or claim rendered fidelity without browser evidence.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

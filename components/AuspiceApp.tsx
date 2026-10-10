@@ -8,6 +8,9 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import AlmanacToday from "./AlmanacToday";
+import TarotTable from "./TarotTable";
+import { HomePlanner, DatePlanner } from "./AlmanacTools";
 
 type Tool =
   | "today"
@@ -17,7 +20,9 @@ type Tool =
   | "fengshui"
   | "synthesis"
   | "journal"
-  | "account";
+  | "account"
+  | "homes"
+  | "dates";
 type Tradition = "tarot" | "iching" | "astrology" | "fengshui" | "synthesis";
 type Member = { id: string; name: string; email: string };
 type Reading = {
@@ -52,6 +57,8 @@ export function AuspiceIcon({
   className?: string;
 }) {
   const paths: Record<IconName, ReactNode> = {
+    homes: <><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7" /></>,
+    dates: <><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18m-13 5h3m3 0h3"/></>,
     today: (
       <>
         <path d="M20.4 14.2A8.5 8.5 0 0 1 9.8 3.6 8.5 8.5 0 1 0 20.4 14.2Z" />
@@ -139,18 +146,7 @@ export function AuspiceIcon({
 }
 
 export function AuspiceLogo({ compact = false }: { compact?: boolean }) {
-  return (
-    <span className="auspice-logo">
-      <span className="logo-mark">
-        <AuspiceIcon name="star" size={25} />
-      </span>
-      {!compact && (
-        <span>
-          auspice<span className="logo-dot">.</span>
-        </span>
-      )}
-    </span>
-  );
+  return <span className="auspice-logo"><span className="logo-mark" aria-hidden="true">吉</span>{!compact && <span>Auspice</span>}</span>;
 }
 
 export function CelestialDial({ className = "" }: { className?: string }) {
@@ -202,7 +198,7 @@ export function CelestialDial({ className = "" }: { className?: string }) {
 }
 
 const traditions: {
-  id: Exclude<Tool, "today" | "journal" | "account">;
+  id: Tradition;
   name: string;
   subtitle: string;
   description: string;
@@ -284,6 +280,8 @@ const toolName: Record<Tool, string> = {
   synthesis: "Holistic reading",
   journal: "My journal",
   account: "My account",
+  homes: "Home & place",
+  dates: "Timing & dates",
 };
 
 function TraditionArt({ tradition }: { tradition: string }) {
@@ -495,185 +493,6 @@ function ReadingView({
   );
 }
 
-function Today({
-  onSelect,
-  user,
-}: {
-  onSelect: (tool: Tool) => void;
-  user: Member | null;
-}) {
-  const [draw, setDraw] = useState<{ name: string; detail: string } | null>(
-    null,
-  );
-  const [drawing, setDrawing] = useState(false);
-  const [drawError, setDrawError] = useState("");
-  const drawCard = async () => {
-    setDrawing(true);
-    setDrawError("");
-    try {
-      const data = await responseData<{ name: string; detail: string }>(
-        await fetch("/api/draw", { cache: "no-store" }),
-      );
-      setDraw(data);
-    } catch (error) {
-      setDrawError(
-        error instanceof Error
-          ? error.message
-          : "Your card couldn’t be drawn. Try again.",
-      );
-    } finally {
-      setDrawing(false);
-    }
-  };
-  return (
-    <>
-      <div className="page-intro">
-        <div>
-          <p className="quiet-label">Your space to pause</p>
-          <h1>
-            {user?.name
-              ? `Welcome, ${user.name.split(" ")[0]}.`
-              : "A little perspective.\nA little possibility."}
-          </h1>
-        </div>
-        <p>
-          Come as you are.
-          <br />
-          See what opens up.
-        </p>
-      </div>
-      <div className="today-feature">
-        <section className="sanctuary-hero">
-          <div className="sanctuary-hero-copy">
-            <span className="pill">
-              <span />A moment for yourself
-            </span>
-            <h2>
-              Make room for
-              <br />
-              what comes next.
-            </h2>
-            <p>
-              Ancient wisdom. Fresh perspectives.
-              <br />A practice that’s entirely your own.
-            </p>
-            <button className="button" onClick={() => onSelect("tarot")}>
-              Explore your question
-              <AuspiceIcon name="arrow" size={18} />
-            </button>
-          </div>
-          <CelestialDial />
-        </section>
-        <aside className="daily-pause">
-          <div className="pause-icon">
-            <AuspiceIcon name="leaf" size={29} />
-          </div>
-          <p className="quiet-label">A simple beginning</p>
-          <h2>
-            Before you look
-            <br />
-            for an answer,
-            <br />
-            take a breath.
-          </h2>
-          <p>
-            Let your shoulders settle. Notice what’s here. There’s no need to
-            have it all figured out.
-          </p>
-          <span className="pause-duration">A pause, at your own pace</span>
-        </aside>
-      </div>
-      <section className="traditions-section">
-        <div className="section-heading">
-          <div>
-            <h2>Follow your curiosity</h2>
-            <p>Different traditions. New ways of seeing.</p>
-          </div>
-          <span className="section-ornament">
-            <AuspiceIcon name="star" size={18} />
-          </span>
-        </div>
-        <div className="tradition-grid">
-          {traditions
-            .filter((tradition) => tradition.id !== "synthesis")
-            .map((tradition) => (
-              <button
-                key={tradition.id}
-                className={`tradition-card tradition-${tradition.id}`}
-                onClick={() => onSelect(tradition.id)}
-              >
-                <TraditionArt tradition={tradition.id} />
-                <h3>{tradition.name}</h3>
-                <p>{tradition.subtitle}</p>
-                <span className="tradition-open">
-                  <AuspiceIcon name="arrow" size={18} />
-                </span>
-              </button>
-            ))}
-        </div>
-        <button
-          className="synthesis-invitation"
-          onClick={() => onSelect("synthesis")}
-        >
-          <AuspiceIcon name="synthesis" size={24} />
-          <span>
-            <strong>Let the traditions meet.</strong>
-            <small>Explore one question through several perspectives.</small>
-          </span>
-          <AuspiceIcon name="arrow" size={19} />
-        </button>
-      </section>
-      <div className="today-lower">
-        <section className="daily-card-section">
-          <div
-            className={`mini-tarot ${draw ? "is-drawn" : ""}`}
-            aria-hidden="true"
-          >
-            <div>
-              <AuspiceIcon name={draw ? "sun" : "star"} size={35} />
-              <span>{draw ? "Your card" : "Auspice"}</span>
-            </div>
-          </div>
-          <div>
-            <p className="quiet-label">A free moment of reflection</p>
-            <h2>{draw ? draw.name : "One card. An open mind."}</h2>
-            <p aria-live="polite">
-              {draw
-                ? draw.detail
-                : "Draw a card and see what its imagery brings to mind. No question needed."}
-            </p>
-            {drawError && (
-              <p className="inline-error" role="alert">
-                {drawError}
-              </p>
-            )}
-            <button className="text-link" onClick={drawCard} disabled={drawing}>
-              {drawing
-                ? "Drawing your card…"
-                : draw
-                  ? "Draw another card"
-                  : "Draw a card"}
-              <AuspiceIcon name="arrow" size={16} />
-            </button>
-          </div>
-        </section>
-        <section className="journal-invitation">
-          <AuspiceIcon name="journal" size={26} />
-          <h2>A place to return to.</h2>
-          <p>Keep your readings together and notice what stays with you.</p>
-          <button className="text-link" onClick={() => onSelect("journal")}>
-            Open my journal
-            <AuspiceIcon name="arrow" size={16} />
-          </button>
-        </section>
-      </div>
-      <p className="sanctuary-footnote">
-        <AuspiceIcon name="star" size={14} />
-        Wisdom to explore. Space to decide.
-      </p>
-    </>
-  );
-}
 
 function ReadingForm({
   tradition,
@@ -681,16 +500,20 @@ function ReadingForm({
   sessionReady,
   usage,
   onReadingSaved,
+  initialQuestion = "",
+  initialContext = "",
 }: {
   tradition: (typeof traditions)[number];
   user: Member | null;
   sessionReady: boolean;
   usage: { used: number; limit: number } | null;
   onReadingSaved: () => void;
+  initialQuestion?: string;
+  initialContext?: string;
 }) {
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useState(initialQuestion);
   const [birthDate, setBirthDate] = useState("");
-  const [context, setContext] = useState("");
+  const [context, setContext] = useState(initialContext);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [authRequired, setAuthRequired] = useState(false);
@@ -751,17 +574,20 @@ function ReadingForm({
       />
     );
   return (
+    <>
+    {tradition.id === "tarot" && <TarotTable />}
     <div className="reading-layout">
       <section className="reading-form-wrap">
         <div className={`tool-emblem tradition-${tradition.id}`}>
           <TraditionArt tradition={tradition.id} />
         </div>
-        <h1>{tradition.name}</h1>
+        {tradition.id === "tarot" ? <h2>A personal tarot reading</h2> : <h1>{tradition.name}</h1>}
         <p className="tool-description">{tradition.description}</p>
         <form onSubmit={submit} className="reading-form">
           <label className="form-field">
             <span>{tradition.question}</span>
             <textarea
+              id="reading-question"
               className="input"
               rows={4}
               value={question}
@@ -904,6 +730,7 @@ function ReadingForm({
         </div>
       </aside>
     </div>
+    </>
   );
 }
 
@@ -1121,6 +948,16 @@ export default function AuspiceApp({
     null,
   );
   const [menuOpen, setMenuOpen] = useState(false);
+  const [night, setNight] = useState(false);
+  const [readingSeed, setReadingSeed] = useState<{ question: string; context: string; key: string } | null>(null);
+  useEffect(() => {
+    try { setNight(localStorage.getItem("auspice-theme") === "night" || (!localStorage.getItem("auspice-theme") && /Electron/i.test(navigator.userAgent))); } catch { /* The theme works in memory when storage is unavailable. */ }
+  }, []);
+  function toggleTheme() {
+    const next = !night;
+    setNight(next);
+    try { localStorage.setItem("auspice-theme", next ? "night" : "paper"); } catch { /* Optional preference storage. */ }
+  }
   const [today, setToday] = useState("");
   useEffect(() => {
     let current = true;
@@ -1190,8 +1027,9 @@ export default function AuspiceApp({
       document.querySelector<HTMLButtonElement>(".mobile-menu-button")?.focus();
     };
   }, [menuOpen]);
-  const selectTool = (tool: Tool) => {
+  const selectTool = useCallback((tool: Tool) => {
     setActiveTool(tool);
+    setReadingSeed(null);
     setMenuOpen(false);
     window.history.replaceState(
       null,
@@ -1204,6 +1042,21 @@ export default function AuspiceApp({
         .getElementById("sanctuary-content")
         ?.focus({ preventScroll: true }),
     );
+  }, []);
+  useEffect(() => {
+    const askShortcut = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        selectTool("synthesis");
+        requestAnimationFrame(() => document.getElementById("reading-question")?.focus());
+      }
+    };
+    document.addEventListener("keydown", askShortcut);
+    return () => document.removeEventListener("keydown", askShortcut);
+  }, [selectTool]);
+  const askFromPlanner = (tool: "fengshui" | "synthesis", question: string, context = "") => {
+    selectTool(tool);
+    setReadingSeed({ question, context, key: crypto.randomUUID() });
   };
   const navItem = (tool: Tool) => (
     <button
@@ -1218,7 +1071,7 @@ export default function AuspiceApp({
     </button>
   );
   return (
-    <div className="sanctuary">
+    <div className="sanctuary" data-theme={night ? "night" : "paper"} data-tool={activeTool}>
       <a href="#sanctuary-content" className="skip-link">
         Skip to content
       </a>
@@ -1239,25 +1092,18 @@ export default function AuspiceApp({
         >
           <AuspiceIcon name="close" />
         </button>
-        <div className="sidebar-caption">A little wisdom, every day.</div>
+        <button className="sidebar-ask" onClick={() => selectTool("synthesis")}><span aria-hidden="true">問</span> Ask a question <kbd>⌘K</kbd></button>
         <nav aria-label="Sanctuary navigation">
-          <div className="sidebar-nav-group">{navItem("today")}</div>
-          <p className="sidebar-label">Explore</p>
-          <div className="sidebar-nav-group">
-            {traditions.map((tradition) => navItem(tradition.id))}
-          </div>
-          <p className="sidebar-label">Your space</p>
-          <div className="sidebar-nav-group">{navItem("journal")}</div>
+          <div className="sidebar-nav-group">{navItem("today")}{navItem("journal")}</div>
+          <p className="sidebar-label">Life</p>
+          <div className="sidebar-nav-group">{navItem("homes")}{navItem("dates")}{navItem("synthesis")}</div>
+          <p className="sidebar-label">Cast & explore</p>
+          <div className="sidebar-nav-group">{traditions.filter(tradition => tradition.id !== "synthesis").map((tradition) => navItem(tradition.id))}</div>
+          <p className="sidebar-label">The library</p>
+          <div className="sidebar-nav-group"><a href="/guides" className="sidebar-link"><AuspiceIcon name="journal" size={20}/><span>Practice guides</span></a><a href="/download" className="sidebar-link"><AuspiceIcon name="arrow" size={20}/><span>Desktop & mobile</span></a></div>
         </nav>
         <div className="sidebar-bottom">
-          <div className="sidebar-note">
-            <AuspiceIcon name="star" size={18} />
-            <p>
-              The next chapter
-              <br />
-              starts with a pause.
-            </p>
-          </div>
+          <button className="studio-toggle" onClick={toggleTheme} aria-pressed={night}><AuspiceIcon name="today" size={18}/><span>{night ? "Return to paper" : "Night studio"}</span></button>
           <a href="/account" className="sidebar-account">
             <span className="avatar">
               {user?.name?.charAt(0).toUpperCase() || (
@@ -1293,10 +1139,11 @@ export default function AuspiceApp({
               <AuspiceIcon name="menu" />
             </button>
             <span className="desktop-breadcrumb">
-              Your sanctuary<span className="breadcrumb-divider">/</span>
+              Almanac<span className="breadcrumb-divider">/</span>
             </span>
             <span>{toolName[activeTool]}</span>
           </div>
+          <button className="header-ask" onClick={() => selectTool("synthesis")}><span aria-hidden="true">問</span><span>Ask anything. Start with what matters.</span><kbd>⌘K</kbd></button>
           <div className="header-date">
             <AuspiceIcon name="sun" size={18} />
             <span>{today || "Take your time"}</span>
@@ -1324,14 +1171,14 @@ export default function AuspiceApp({
             </div>
           )}
           {activeTool === "today" ? (
-            <Today onSelect={selectTool} user={user} />
+            <AlmanacToday onSelect={selectTool} name={user?.name} />
           ) : activeTool === "journal" ? (
             <Journal
               user={user}
               sessionReady={sessionReady}
               onSelect={selectTool}
             />
-          ) : activeTool === "account" ? (
+          ) : activeTool === "homes" || activeTool === "dates" ? null : activeTool === "account" ? (
             <section className="empty-state">
               <AuspiceIcon name="account" size={32} />
               <h1>Your account</h1>
@@ -1342,7 +1189,9 @@ export default function AuspiceApp({
             </section>
           ) : (
             <ReadingForm
-              key={activeTool}
+              key={`${activeTool}-${readingSeed?.key || "empty"}`}
+              initialQuestion={readingSeed?.question}
+              initialContext={readingSeed?.context}
               tradition={
                 traditions.find((tradition) => tradition.id === activeTool)!
               }
@@ -1356,6 +1205,8 @@ export default function AuspiceApp({
               }
             />
           )}
+          <div hidden={activeTool !== "homes"}><HomePlanner onAsk={(question, context) => askFromPlanner("fengshui", question, context)}/></div>
+          <div hidden={activeTool !== "dates"}><DatePlanner onAsk={(question, context) => askFromPlanner("synthesis", question, context)}/></div>
         </main>
       </div>
       <nav
