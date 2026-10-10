@@ -1,0 +1,19 @@
+name: Feature request
+description: Describe a user need and how to verify a solution.
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What would you like to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: What would a successful result look like?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Relevant context or sources

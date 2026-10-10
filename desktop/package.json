@@ -1,0 +1,74 @@
+{
+  "name": "auspice-desktop",
+  "version": "0.1.0",
+  "description": "Auspice desktop sanctuary",
+  "author": "zinnoberHaus",
+  "license": "Apache-2.0",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-builder --mac zip --arm64 --x64 --publish never",
+    "package:arm64": "electron-builder --mac zip --arm64 --publish never",
+    "package:x64": "electron-builder --mac zip --x64 --publish never",
+    "icon": "node build-icon.cjs",
+    "audit": "npm audit",
+    "verify:package": "node verify-package.cjs"
+  },
+  "devDependencies": {
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3",
+    "sharp": "0.35.5"
+  },
+  "build": {
+    "appId": "haus.zinnober.auspice",
+    "productName": "Auspice",
+    "directories": {
+      "output": "../release",
+      "buildResources": "assets"
+    },
+    "files": [
+      "main.cjs",
+      "navigation.cjs",
+      "offline.html"
+    ],
+    "mac": {
+      "category": "public.app-category.lifestyle",
+      "target": [
+        "zip"
+      ],
+      "hardenedRuntime": true,
+      "identity": "-",
+      "icon": "assets/icon.icns",
+      "notarize": false,
+      "minimumSystemVersion": "13.0"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Lifestyle"
+    },
+    "artifactName": "Auspice-${version}-mac-${arch}.${ext}",
+    "asar": true,
+    "npmRebuild": false,
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "grantFileProtocolExtraPrivileges": false,
+      "resetAdHocDarwinSignature": true
+    },
+    "afterPack": "./after-pack.cjs"
+  },
+  "overrides": {
+    "global-agent": "4.1.3"
+  }
+}
