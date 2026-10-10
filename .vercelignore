@@ -1,4 +1,5 @@
 .env*
+.neon/
 .git/
 .agents/
 .codex/

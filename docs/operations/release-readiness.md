@@ -11,7 +11,7 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 - Database rollback audit verifies erasure of all application tables, preservation of a different owner, and rejection of orphan recreation.
 - Tradition tests cover tarot deck constraints, all 4,096 three-coin outcomes, the 64 canonical hexagrams, changing lines and date validation.
 - Nine server-rendered guide routes return HTTP 200 and an unknown guide returns HTTP 404. Canonical metadata, sitemap, robots, article and breadcrumb structured data are implemented.
-- Production build and typechecking passed locally and in GitHub Actions. The current suite has 46 passing tests and two explicitly skipped database integration tests; the separate rollback database audits passed.
+- Production build and typechecking passed locally and in GitHub Actions. The default suite has 46 passing tests and two opt-in database tests. Both database tests subsequently passed on the isolated development database, including concurrent reservations, idempotency and deletion serialization; the separate rollback audits also passed.
 
 ## Not yet proven or available
 
@@ -22,12 +22,18 @@ Date: October 10, 2026. This is an evidence ledger, not a claim of a completed c
 - Administrator activation and live administration: no owner account was guessed or granted privileges. Mocked authorization tests are separate from a live operator test.
 - Payments: Stripe terms await human acceptance. Plus is an interest list; there is no active billing.
 - SEO outcomes: indexed pages, rankings, acquisition and conversion have not been measured. The research and editorial plan are hypotheses, not traffic results.
-- Separate preview data, backup restore drill, production spending alarms and sustained operational monitoring remain launch work.
+- Backup restore drill, production spending alarms and sustained operational monitoring remain launch work. Production, preview and development now have separate provisioned resources; retirement of legacy previews is recorded below.
 - Desktop signing/notarization and additional operating systems are not complete. Desktop packaging evidence is in [desktop operations](desktop.md).
 
 ## Guide measurement follow-up
 
 The public guides now include daily view and sanctuary-link event counting with no visitor IDs or private-content telemetry, plus a read-only operator report. Fourteen additional tests cover the collector, client transport boundary and report. The production build, typecheck and dependency audit pass locally (zero production dependency vulnerabilities). The new migration and actual counter SQL passed in an isolated PostgreSQL schema inside a rollback transaction; no synthetic counts were retained. Independent browser execution and organic traffic remain unverified. See [measurement operations](guide-measurement.md) for data scope, disable controls, limitations and rollback.
+
+## Environment isolation follow-up
+
+Three distinct Neon projects now serve production, preview and development, with environment-specific Vercel bindings. The production database/Auth endpoints and cookie-secret metadata remained unchanged during the connection update. Both new resources started with zero identities, received all four migrations and use separate nonproduction cookie secrets. The complete local account, real reading, journal, export and erasure smoke flow passed against the isolated development service, and its synthetic fixtures were removed. All preview branches currently share the single preview resource; this is not per-branch isolation.
+
+Ten legacy previews were inventoried and their exact GitHub source revisions archived privately before retirement. The replacement preview (`dpl_2KBKXErRUkJNFfRoVtZUwASUThkU`, revision `6448e6049cda78a08b20a3dbb88d20376f08b615`) is Ready. Authenticated Vercel CLI requests returned HTTP 200 for its anonymous session and HTTP 204 for disabled guide collection; sign-in remains HTTP 403 `INVALID_ORIGIN`. All ten inventoried legacy previews were retired, all 17 old immutable/alias URLs returned 404, and production remained available. No production deployment or customer data was removed. See the [retirement and resource evidence](environment-isolation-evidence.json) and [PR 8](https://github.com/zinnoberHaus/auspice/pull/8). Existing deployment snapshots do not inherit new environment settings; recovering an old preview would recover the old unsafe configuration.
 
 ## Release records
 

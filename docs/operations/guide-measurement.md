@@ -10,12 +10,27 @@ These are **event counts**, not unique people, attributed conversions or retenti
 
 ## Read-only report
 
-Use the authorized database environment for the intended deployment. The script loads `.env.local`, with already-set environment variables taking precedence. Never paste connection strings into reports or commits.
+Use the authorized database environment for the intended deployment. The script loads `.env.local`, with already-set environment variables taking precedence. The current `.env.local` points to the separate development database, so the commands below report development totals unless an explicit environment override is supplied. They are not implicitly production reports. Never paste connection strings into reports or commits.
 
 ```sh
 npm run metrics:guides
 npm run metrics:guides -- --days 7
 ```
+
+For an authorized production report, use a private production environment file without replacing development `.env.local`. Replace the example path with the intended file and confirm the resource identity before running. This imports the report directly, avoiding the CLI's `.env.local` fallback, and rejects a missing database URL:
+
+```sh
+env -u DATABASE_URL node --env-file=/absolute/private/auspice-production.env --input-type=module <<'JS'
+if (!process.env.DATABASE_URL) throw new Error('Selected environment file must provide DATABASE_URL.');
+const { report } = await import('./scripts/guide-metrics-report.mjs');
+await report(['--days', '7']).catch(() => {
+  console.error('Guide report failed; check the selected environment and migration 004.');
+  process.exitCode = 1;
+});
+JS
+```
+
+The report uses only `DATABASE_URL`, unlike the migration runner, which prefers `DATABASE_URL_UNPOOLED`. See [explicit environment selection](deployment.md#explicit-database-selection). Keep configuration backups private and outside source control and deployment uploads.
 
 The default window is 30 UTC calendar days including today; accepted windows are 1–90 days. Output is JSON with total view/click events and a daily breakdown by guide. Empty results mean no stored events in that window, not proof of zero human traffic. The script makes one parameterized `SELECT` and does not read account, reading or interest tables. It is an operator CLI, not a publicly exposed reporting endpoint.
 
@@ -23,7 +38,9 @@ Use guide event counts to identify useful topics and links to investigate. Searc
 
 ## Controls and deployment
 
-Collection defaults to enabled only when `VERCEL_ENV=production`. `AUSPICE_GUIDE_METRICS=0` disables it in any environment; `AUSPICE_GUIDE_METRICS=1` explicitly enables local testing. Preview and development are otherwise disabled, which matters while they share the initial database. Apply migration `004_guide_metrics.sql` before deploying the collector. It adds an independent table and does not alter identity or reading data. Normal checksum-tracked migration rules apply.
+Collection defaults to enabled only when `VERCEL_ENV=production`. `AUSPICE_GUIDE_METRICS=0` disables it in any environment; `AUSPICE_GUIDE_METRICS=1` explicitly enables local testing. Preview and development are otherwise disabled and now have separate database/Auth resources from production. Preview branches share one preview database, rather than a separate database per PR. Explicit test collection belongs in the intended non-production environment; do not populate the production baseline with synthetic traffic.
+
+Migration `004_guide_metrics.sql` is applied in all three environments. It adds an independent table and does not alter identity or reading data. Apply it explicitly before deploying the collector to any future environment, using the normal checksum-tracked migration rules. Resource bindings and [verified retirement of historical previews](deployment.md#environment-changes-and-historical-previews) are separate: old deployments retain their original environment snapshots until retired, even after the current project bindings change.
 
 The client sends a fixed JSON payload with `credentials: 'omit'`, `referrerPolicy: 'no-referrer'` and `keepalive: true`, without waiting for a response before navigation. It honors `navigator.doNotTrack` and `navigator.globalPrivacyControl`; the server also ignores requests carrying `DNT: 1` or `Sec-GPC: 1`. The endpoint requires a matching request origin, a JSON body of at most 512 bytes, and the exact event schema. No cookie/session lookup is performed. Invalid requests do not increment a counter. Collection failure leaves guide content and its ordinary link usable.
 

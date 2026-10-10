@@ -1,0 +1,210 @@
+{
+  "observedAt": "2026-10-10T21:30:56.525Z",
+  "vercelProjectId": "prj_XcZcL7NAgdIM3x3pYrNwqduBdVm2",
+  "resources": [
+    {
+      "environment": "production",
+      "name": "auspice-db",
+      "resourceId": "store_WjTWodqy6Mq6ZY1h",
+      "neonProjectId": "long-river-98398124"
+    },
+    {
+      "environment": "preview",
+      "name": "auspice-preview-db",
+      "resourceId": "store_f4WKKRim93sdT9cU",
+      "neonProjectId": "soft-poetry-10995260"
+    },
+    {
+      "environment": "development",
+      "name": "auspice-dev-db",
+      "resourceId": "store_4cjpEWzit91f3pKp",
+      "neonProjectId": "divine-tooth-41517958"
+    }
+  ],
+  "plan": "free_v3",
+  "migrationsApplied": [
+    "001",
+    "002",
+    "003",
+    "004"
+  ],
+  "productionConnectionValuesUnchanged": true,
+  "productionCookieMetadataUnchanged": true,
+  "isolatedDevelopmentDatabaseTestsPassed": 2,
+  "isolatedDevelopmentLiveSmokePassed": true,
+  "syntheticFixturesCleaned": true,
+  "replacementPreview": {
+    "id": "dpl_2KBKXErRUkJNFfRoVtZUwASUThkU",
+    "sourceCommit": "6448e6049cda78a08b20a3dbb88d20376f08b615",
+    "sessionStatus": 200,
+    "disabledMetricsStatus": 204,
+    "signInStatus": 403,
+    "signInError": "INVALID_ORIGIN"
+  },
+  "retiredPreviews": [
+    {
+      "id": "dpl_ExxTgd2Kdq8CCEY6TcAXJ7dPawVB",
+      "url": "auspice-is076vbpi-my-team-ae70891f.vercel.app",
+      "sourceCommit": "11f32f0311e0ee71b4e6d9a0013a9b310cd8fa7f",
+      "sourceArchiveSha256": "42b1027bdb41121d1935248a2f043c4968cd9420eee8c19cb98edea7b830e38d",
+      "retiredAt": "2026-10-10T21:29:47.678Z"
+    },
+    {
+      "id": "dpl_9953GoieB4hnKuCLTULH2bFkjFzW",
+      "url": "auspice-6n033fhqd-my-team-ae70891f.vercel.app",
+      "sourceCommit": "4f3616701f42bbe4dcd93481000fc5fe28ea0aae",
+      "sourceArchiveSha256": "a15eb4956c23a1faf4d8b8b315abab085571cb9d36f893e809cde16bdbec65cd",
+      "retiredAt": "2026-10-10T21:29:50.812Z"
+    },
+    {
+      "id": "dpl_4SFy4MZbhDNB7eKH3ouGa1L1p4sQ",
+      "url": "auspice-ds1a4lx0y-my-team-ae70891f.vercel.app",
+      "sourceCommit": "491b94803d3f8f71747fdeab0e1d7963b7a04c50",
+      "sourceArchiveSha256": "7605a1a350162f94d33a66b3a7c6f9ef2aa4d61824aad3be37770af8b4f9ab70",
+      "retiredAt": "2026-10-10T21:29:53.830Z"
+    },
+    {
+      "id": "dpl_5YKYPxE3NkhahDRAfwgEj458rD1R",
+      "url": "auspice-qvnl8i695-my-team-ae70891f.vercel.app",
+      "sourceCommit": "72c05819d7170623893f989583570931cd19c778",
+      "sourceArchiveSha256": "03ae6d4acaa4fccf2c5701cb0057671a47a2d316f58d88391ff8947226dc5977",
+      "retiredAt": "2026-10-10T21:29:56.982Z"
+    },
+    {
+      "id": "dpl_9weh6nEgiUeV5sdDJbp1cs9qx9n9",
+      "url": "auspice-k7np3dcf0-my-team-ae70891f.vercel.app",
+      "sourceCommit": "d5b2d98d83cb1b7c79c17b6393aea5f6be138296",
+      "sourceArchiveSha256": "eca0d1253d313f421b95eb65d2866538e46155288bc2df6b2bcfcba352158d04",
+      "retiredAt": "2026-10-10T21:30:00.406Z"
+    },
+    {
+      "id": "dpl_YVMttAKGEXL3XSs9R95rUZDvjJWs",
+      "url": "auspice-7u57kqn6a-my-team-ae70891f.vercel.app",
+      "sourceCommit": "e09a0a483880340a75ec0b4e599ab512b75d9de0",
+      "sourceArchiveSha256": "5134375106ea09bc362ca2221fc67313937eab3a77de97c0201a99fc856e90f1",
+      "retiredAt": "2026-10-10T21:30:03.471Z"
+    },
+    {
+      "id": "dpl_Fy9Xj5YTXfjWFndHXJggFjfdSPUt",
+      "url": "auspice-4dj2telcj-my-team-ae70891f.vercel.app",
+      "sourceCommit": "612b4203352c4b307cba8a50c33ac0b58d44bd9d",
+      "sourceArchiveSha256": "b26abf326be973bd0a983937c86ee2cdde3ff3e9e5ad4762cc558a1b28e05383",
+      "retiredAt": "2026-10-10T21:30:06.509Z"
+    },
+    {
+      "id": "dpl_2PhvTUGVX3Le9uZdhvDRyiRfugg1",
+      "url": "auspice-12qvgu3ne-my-team-ae70891f.vercel.app",
+      "sourceCommit": "15c26fe87fb5ad95df8e0d411663d1d71719d60d",
+      "sourceArchiveSha256": "0b2e23fa021890b41282c0e780873d7764a8f0356b03de28dc73d59a01d69498",
+      "retiredAt": "2026-10-10T21:30:09.760Z"
+    },
+    {
+      "id": "dpl_7GUARb3wL9QE54Jj6RDXj9fNkDHF",
+      "url": "auspice-9odujy80b-my-team-ae70891f.vercel.app",
+      "sourceCommit": "e5208c909708c63a77f71eab96bd147eef4f2f63",
+      "sourceArchiveSha256": "284ca116cae4353e4c9f412cce8eeba1d4708ec6521ed5877404fcfa2d4415ef",
+      "retiredAt": "2026-10-10T21:30:12.723Z"
+    },
+    {
+      "id": "dpl_DXiSfReCWNgK5qgfP2KBUWCkAi5X",
+      "url": "auspice-fx7770k96-my-team-ae70891f.vercel.app",
+      "sourceCommit": "7f6e6f69cfe7c71c3f6612b32dc1782bfc8a80ce",
+      "sourceArchiveSha256": "a1e024d940b259fbbb786d8ebe08e2db45e485a5e3cd9880a488d69149cf62fe",
+      "retiredAt": "2026-10-10T21:30:15.793Z"
+    }
+  ],
+  "oldRoutes": [
+    {
+      "host": "auspice-is076vbpi-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-dependabot-npmandyarntypesc-aa2e79-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-6n033fhqd-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-dependabot-npmandyarnlucide-ec881f-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-ds1a4lx0y-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-dependabot-npmandyarntypesn-cde879-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-qvnl8i695-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-feat-guide-measurement-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-k7np3dcf0-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-docs-alpha-release-evidence-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-7u57kqn6a-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-4dj2telcj-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-12qvgu3ne-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-9odujy80b-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-dependabot-githubactionsact-2f82cb-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-fx7770k96-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    },
+    {
+      "host": "auspice-git-feat-initial-product-my-team-ae70891f.vercel.app",
+      "status": 404,
+      "platformError": true
+    }
+  ],
+  "productionHomepageStatus": 200,
+  "limitations": [
+    "Preview branches share one preview resource.",
+    "Browser rendering and native interaction remain unverified.",
+    "Production and preview trusted domains still need provider configuration.",
+    "Retiring old previews does not rotate production credentials; recover source into a fresh isolated deployment."
+  ]
+}
