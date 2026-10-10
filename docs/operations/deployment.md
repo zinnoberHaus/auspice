@@ -6,11 +6,11 @@ Observed October 10, 2026. Repository: `zinnoberHaus/auspice`. Public origin: `h
 
 | Service | Provisioned resource | State |
 | --- | --- | --- |
-| Vercel | Project `prj_XcZcL7NAgdIM3x3pYrNwqduBdVm2`, scope `my-team-ae70891f` (display name Microyee) | Initial deployment ready; authenticated CLI owner `zinnoberhaus` |
-| Neon | Project `long-river-98398124`, Vercel resource `store_WjTWodqy6Mq6ZY1h`, free_v3 plan | Database, Managed Better Auth and migrations provisioned; real account/session/reading tests passed |
+| Vercel | Project `prj_XcZcL7NAgdIM3x3pYrNwqduBdVm2`, scope `my-team-ae70891f` (display name Microyee) | Alpha deployment ready; public routes verified; authenticated CLI owner `zinnoberhaus` |
+| Neon | Project `long-river-98398124`, Vercel resource `store_WjTWodqy6Mq6ZY1h`, free_v3 plan | Database, Managed Better Auth and migrations provisioned; real account/session/reading tests passed locally; production signup blocked by the trusted-domain configuration |
 | Vercel AI Gateway | Project OIDC; `google/gemini-2.5-flash-lite` | Real structured reading tested; gateway availability and quota remain external dependencies |
 | Stripe | No billing resource | Marketplace terms require human acceptance; no checkout, products, subscriptions or webhook processing are advertised as active |
-| GitHub Actions | Repository Verify workflow | See the release evidence for the tested revision |
+| GitHub Actions | Repository Verify workflow | Web and desktop dependency checks passed for alpha source; main requires both |
 
 The Vercel scope is the existing connected account; its display name is not evidence of a separate Zinnober organization. A future team or custom-domain transfer must explicitly migrate env scopes, domain allowlists, auth callback settings and the desktop origin together. GitHub is a personal owner account; executable agent roles do not imply that human team memberships were created.
 
@@ -39,3 +39,11 @@ If gateway calls fail, reservations become failed and do not consume the monthly
 ## Launch gates
 
 Import and visually verify the supplied design archive; verify mobile/desktop rendering; configure and test production email delivery and recovery with an owner-controlled mailbox; activate the exact intended administrator; verify trusted domains and production localhost policy; isolate environments; accept Stripe terms and implement/test billing before selling Plus; sign and notarize desktop packages; perform a database restore drill and set operational spending alerts. No production mailbox, administrator, payment method or legal acceptance was fabricated during implementation.
+
+## Production Auth domain correction
+
+The deployed signup endpoint returned HTTP 403 `INVALID_ORIGIN` for the canonical public domain. Do not rewrite or suppress the request's Origin to bypass this protection.
+
+Open the [existing Vercel Neon resource](https://vercel.com/my-team-ae70891f/~/stores/integration/store_WjTWodqy6Mq6ZY1h), choose **Open in Neon**, select the production branch, then **Auth → Configuration → Domains**. Add exactly `https://auspice-red.vercel.app` without a trailing slash. The resource can also be opened using `vercel integration open neon auspice-db --scope my-team-ae70891f`; its generated SSO URL is sensitive and must not be committed.
+
+This uses the existing Vercel-managed account, not a new Neon project. The CLI's integration connection command exposes environments and prefixes, but does not expose this domain setting. A separate Neon management API key is not available in the current setup, and native/browser automation permissions were unavailable. The owner was asked to apply the documented setting. Then rerun the production smoke flow and record the result before claiming production accounts work. [Neon domain configuration](https://neon.com/docs/auth/guides/configure-domains), [Vercel-managed integration](https://neon.com/docs/guides/vercel-managed-integration).

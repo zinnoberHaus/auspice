@@ -18,7 +18,7 @@ export default function AccountClient() {
       else if(mode==='reset')result=await authClient.emailOtp.resetPassword({email,otp:code,password});
       else if(mode==='verify')result=await authClient.emailOtp.verifyEmail({email,otp:code});
       else result=await authClient.signIn.email({email,password});
-      if(result.error){setMessage(result.error.message||'Please check your details and try again.'); if(result.error.code==='EMAIL_NOT_VERIFIED')setMode('verify');return;}
+      if(result.error){setMessage(result.error.code==='INVALID_ORIGIN'?'Account access is temporarily unavailable. You can still explore the daily card and guide library.':result.error.message||'Please check your details and try again.'); if(result.error.code==='EMAIL_NOT_VERIFIED')setMode('verify');return;}
       if(mode==='recover'){setMessage('If that address has an account, a recovery code is on its way. Enter it with your new password.');setMode('reset');}
       else if(mode==='reset'){setMessage('Password updated. You can now sign in.');setMode('signin');setPassword('');history.replaceState(null,'','/account');}
       else if(mode==='signup'){const session=await authClient.getSession();if(session.data?.user){setUser(session.data.user);location.assign(session.data.user.emailVerified?'/sanctuary':'/account');}else{setMode('verify');setMessage('Check your email for a verification code.');}}
