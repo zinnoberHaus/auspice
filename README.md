@@ -45,6 +45,6 @@ AUSPICE_RUN_LIVE_TEST=1 AUSPICE_TEST_URL=http://localhost:3000 node --env-file=.
 
 ## Operations and collaboration
 
-[Deployment and recovery](docs/operations/deployment.md) · [User management](docs/operations/user-management.md) · [Desktop](docs/operations/desktop.md) · [Release evidence](docs/operations/release-readiness.md)
+[Deployment and recovery](docs/operations/deployment.md) · [User management](docs/operations/user-management.md) · [Guide measurement](docs/operations/guide-measurement.md) · [Desktop](docs/operations/desktop.md) · [Release evidence](docs/operations/release-readiness.md)
 
 The `.codex/agents` roles provide bounded product research, implementation, documentation, security review, verification, and release assignments. They run when assigned; they are not background workers. See [contributing](CONTRIBUTING.md), [governance](GOVERNANCE.md), and [security reporting](SECURITY.md). Owner: [zinnoberHaus](https://github.com/zinnoberHaus). Apache-2.0.
