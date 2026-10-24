@@ -15,7 +15,7 @@
     "verify:package": "node verify-package.cjs"
   },
   "devDependencies": {
-    "electron": "44.7.0",
+    "electron": "45.0.0",
     "electron-builder": "26.15.3",
     "sharp": "0.35.5"
   },
